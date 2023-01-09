@@ -17,6 +17,7 @@ export default function useVisualMode(initial) {
     }
 
     setMode(newMode);
+    console.log(newMode)
   }
 
   function back() {
