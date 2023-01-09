@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
+import { MDBTable, MDBTableBody, MDBInput, MDBBtn } from "mdb-react-ui-kit";
 
 export default function LeaderboardPage(props) {
   const players = [
@@ -21,28 +21,29 @@ export default function LeaderboardPage(props) {
       {!isLoggedIn && (
         <div className="leaderboard-login-form">
           <form>
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" />
-            <br />
-            <button type="submit">Login</button>
+            <MDBInput label="username" type="text" />
+            <MDBInput label="password" type="password" />
+            <MDBBtn type="submit">Login</MDBBtn>
           </form>
         </div>
       )}
 
-    <div className="leaderboard-container">
-      <MDBTable striped>
-        <MDBTableBody>
-          {players.map((player) => (
-            <tr key={player.id}>
-              <td>{player.name}</td>
-              <td>{player.wins} wins</td>
-            </tr>
-          ))}
-        </MDBTableBody>
-      </MDBTable>
+      <div className="leaderboard-container">
+        <MDBTable
+          striped
+          bordered
+          borderColor="primary"
+          style={{ width: "50%", margin: "auto", paddingTop: "100px" }}
+        >
+          <MDBTableBody>
+            {players.map((player) => (
+              <tr key={player.id}>
+                <td>{player.name}</td>
+                <td>{player.wins} wins</td>
+              </tr>
+            ))}
+          </MDBTableBody>
+        </MDBTable>
       </div>
     </div>
   );
