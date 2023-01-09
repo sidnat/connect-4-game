@@ -14,6 +14,7 @@ import LeaderboardPage from './components/leaderboard-page';
 function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
 
+
   return (
     <Stack>
     <Navbar bg="primary" variant="dark">

@@ -1,14 +1,29 @@
 import React from "react";
 import { MDBTable, MDBTableBody, MDBInput, MDBBtn } from "mdb-react-ui-kit";
+import { useState ,useEffect } from 'react';
+import axios from 'axios';
+
 
 export default function LeaderboardPage(props) {
-  const players = [
-    { id: 1, name: "Alice", wins: 3 },
-    { id: 2, name: "Bob", wins: 2 },
-    { id: 3, name: "Charlie", wins: 1 },
-    { id: 4, name: "Nikki", wins: 1 },
-    { id: 5, name: "Bobbi", wins: 0 },
-  ];
+  const [ data, setData ] = useState([])
+
+  useEffect(() => {
+    const leaderboardURL = `http://localhost:3003/leaderboard`;
+
+    axios.get(leaderboardURL).then(res => {
+      setData(res.data)
+    })
+  }, []);
+  
+  const players = data
+
+  // const players = [
+  //   { id: 1, name: "Alice", wins: 3 },
+  //   { id: 2, name: "Bob", wins: 2 },
+  //   { id: 3, name: "Charlie", wins: 1 },
+  //   { id: 4, name: "Nikki", wins: 1 },
+  //   { id: 5, name: "Bobbi", wins: 0 },
+  // ];
 
   const isLoggedIn = false;
 
