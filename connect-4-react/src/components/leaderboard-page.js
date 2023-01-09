@@ -17,14 +17,6 @@ export default function LeaderboardPage(props) {
   
   const players = data
 
-  // const players = [
-  //   { id: 1, name: "Alice", wins: 3 },
-  //   { id: 2, name: "Bob", wins: 2 },
-  //   { id: 3, name: "Charlie", wins: 1 },
-  //   { id: 4, name: "Nikki", wins: 1 },
-  //   { id: 5, name: "Bobbi", wins: 0 },
-  // ];
-
   const isLoggedIn = false;
 
   // const { players, isLoggedIn } = props;
