@@ -16,11 +16,8 @@ function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
 
   const {
-    state
+    players
   } = useApplicationData();
-
-  console.log("is this the state?", state)
-
 
   return (
     <Stack>
@@ -40,7 +37,7 @@ function App() {
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
       {mode === "PROFILE_PAGE" && <ProfilePage />}
-      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={state} />}
+      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={players} />}
     </Stack>
   );
 }

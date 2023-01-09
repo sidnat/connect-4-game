@@ -12,5 +12,5 @@ export function useApplicationData () {
     })
   }, []);
 
-  return { state: data };
+  return { players: data };
 }
