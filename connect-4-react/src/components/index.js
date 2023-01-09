@@ -17,7 +17,7 @@ export default function MainPage(props) {
   // if user is logged in, initial mode is profile page, else landing page
   // const { mode, transition, back } = useVisualMode(loggedIn ? PROFILE_PAGE : LANDING_PAGE);
 
-  const mode = LANDING_PAGE;
+  const mode = PROFILE_PAGE;
 
   if (mode === LANDING_PAGE) {
     return <LandingPage />;
