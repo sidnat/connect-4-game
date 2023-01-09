@@ -10,9 +10,16 @@ import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
+import { useApplicationData } from './hooks/useApplicationData';
 
 function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
+
+  const {
+    state
+  } = useApplicationData();
+
+  console.log("is this the state?", state)
 
 
   return (
@@ -33,7 +40,7 @@ function App() {
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
       {mode === "PROFILE_PAGE" && <ProfilePage />}
-      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage />}
+      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={state} />}
     </Stack>
   );
 }

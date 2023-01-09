@@ -5,21 +5,9 @@ import axios from 'axios';
 
 
 export default function LeaderboardPage(props) {
-  const [ data, setData ] = useState([])
-
-  useEffect(() => {
-    const leaderboardURL = `http://localhost:3003/leaderboard`;
-
-    axios.get(leaderboardURL).then(res => {
-      setData(res.data)
-    })
-  }, []);
-  
-  const players = data
-
   const isLoggedIn = false;
 
-  // const { players, isLoggedIn } = props;
+  const { players } = props;
 
   return (
     <div>
