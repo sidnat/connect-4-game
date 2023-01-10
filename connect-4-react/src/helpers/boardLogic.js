@@ -45,9 +45,10 @@ setBoardSize(7, 5);
 // y3  [0, 0, 0, 0, 0, 0, 0],
 // y4  [0, 0, 0, 0, 0, 0, 0]]
 
+const selectedColumn = 0; //should be user inputted variable
 //userIsSelectingColumn will be an onclick column number passed through
-board[4][userIsSelectingColumn] = '1'; //player 1 moves
-board[3][userIsSelectingColumn] = '2'; //player 2 moves
+board[4][selectedColumn] = '1'; //player 1 moves
+board[3][selectedColumn] = '2'; //player 2 moves
 console.log(board);
 
 //     x0  x1 x2 x3 x4 x5 x6
@@ -57,25 +58,26 @@ console.log(board);
 // y3 ['2', 0, 0, 0, 0, 0, 0],
 // y4 ['1', 0, 0, 0, 0, 0, 0]]
 
-const userIsSelectingColumn = 0; //should be user inputted variable
-
-const boardIteration = () => {
+const boardIteration = (playerID, selectedColumn) => {
   // iterating backwards from y-max to y-min, aka bottom y coord to top y coord.
   console.log("Begin iterating to find free spot:");
-  for (let i = gameSizeY - 1; i >= 0; i--) {
-    console.log(`column x = ${userIsSelectingColumn}, row y = ${i}: ( ${Boolean(board[i][userIsSelectingColumn])} ), can I put my piece here? `);
+  // i iterates column from bottom to top
+  for (let i = 5; i >= 0; i--) {
+    console.log(`column x = ${selectedColumn}, row y = ${i}: ( ${Boolean(board[i][selectedColumn])} ), can I put my piece here? `);
 
-    if (board[i][userIsSelectingColumn] !== '1' && board[i][userIsSelectingColumn] !== '2') {
-      console.log(`Yes! No board piece found, I can drop a piece at x = ${userIsSelectingColumn}, y = ${i}`);
+    if (board[i][selectedColumn] !== '1' && board[i][selectedColumn] !== '2') {
+      console.log(`Yes! No board piece found, I can drop a piece at x = ${selectedColumn}, y = ${i}`);
 
-      // array@xy = playeridpiece
+      board[i][selectedColumn] = playerID
 
       break;
     } else {
-      console.log(`No! Player "${board[i][userIsSelectingColumn]}" board piece exists at column x = ${userIsSelectingColumn}, row y = ${i}`);
+      console.log(`No! Player "${board[i][selectedColumn]}" board piece exists at column x = ${selectedColumn}, row y = ${i}`);
     }
   }
 }
+
+boardIteration(1, selectedColumn)
 
 // Begin iterating to find free spot:
 // column x = 0, row y = 4: ( true ), can I put my piece here? 
