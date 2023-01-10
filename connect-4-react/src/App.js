@@ -7,7 +7,7 @@ import Stack from 'react-bootstrap/Stack';
 import useVisualMode from './hooks/useVisualMode';
 import React from 'react';
 import LandingPage from './components/landing-page';
-import ConnectFour from './components/game-page';
+import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
 import { useApplicationData } from './hooks/useApplicationData';

@@ -1,4 +1,6 @@
-import { Game, INVALID_MOVE } from 'boardgame.io/core';
+import { Client } from 'boardgame.io/react';
+import { INVALID_MOVE, GameMethod, Game } from 'boardgame.io/core';
+
 
 const Connect4 = Game({
   // Define the initial state of the game
