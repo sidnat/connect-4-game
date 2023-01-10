@@ -25,7 +25,7 @@ function App() {
       <Container>
         <Navbar.Brand href="#home" onClick={() => transition('LANDING_PAGE')}>Connect 4</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="#game">New game</Nav.Link>
+          <Nav.Link href="#game" onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
           <Nav.Link href="#profile" onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
           <Nav.Link href="#leaderboard" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
