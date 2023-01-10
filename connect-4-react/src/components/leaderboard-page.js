@@ -1,7 +1,6 @@
 import React from "react";
 import { MDBTable, MDBTableBody, MDBInput, MDBBtn } from "mdb-react-ui-kit";
-import { useState ,useEffect } from 'react';
-import axios from 'axios';
+
 
 
 export default function LeaderboardPage(props) {
