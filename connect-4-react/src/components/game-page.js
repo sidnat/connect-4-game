@@ -1,4 +1,3 @@
-// import Connect4 from "../gameLogic";
 // import { Client } from 'boardgame.io/react';
 
 // export default function GamePage(props) {
@@ -37,20 +36,34 @@
 // export default GamePage;
 
 
-import React from 'react';
+// import React from 'react';
+// import { Client } from 'boardgame.io/react';
+// import Connect4 from './game';
+// import Board from './board';
+
+// const Connect4Client = Client({
+//   game: Connect4,
+//   board: Board,
+// });
+
+// const GamePage = () => (
+//   <div>
+//     <Connect4Client playerID="0" />
+//   </div>
+// );
+
+// export default GamePage;
+
+
 import { Client } from 'boardgame.io/react';
-import Connect4 from './game';
-import Board from './board';
+import Connect4 from "../gameLogic";
 
-const Connect4Client = Client({
-  game: Connect4,
-  board: Board,
-});
-
-const GamePage = () => (
-  <div>
-    <Connect4Client playerID="0" />
-  </div>
-);
-
-export default GamePage;
+export default function GamePage() {
+  return (
+    // <Client game={Connect4}>
+      // {/* Your React components that renders the UI */}
+    // </Client>
+    // Client({ game: Connect4 })
+    Client({ game: Connect4})
+  )
+}

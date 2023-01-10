@@ -1,8 +1,6 @@
-import { Client } from 'boardgame.io/react';
-import { INVALID_MOVE, GameMethod, Game } from 'boardgame.io/core';
+import { INVALID_MOVE } from 'boardgame.io/core';
 
-
-const Connect4 = Game({
+const Connect4 = ({
   // Define the initial state of the game
   setup: () => ({
     // Set up the 6x7 board with no tokens placed
