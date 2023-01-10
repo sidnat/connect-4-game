@@ -40,31 +40,58 @@ const board = (x, y) => {
   board[3][userIsSelectingColumn] = '2'; //player 2 moves
   console.log(board);
 
+const selectedColumn = 0; //should be user inputted variable
+//userIsSelectingColumn will be an onclick column number passed through
+board[4][selectedColumn] = '1'; //player 1 moves
+board[3][selectedColumn] = '2'; //player 2 moves
+console.log(board);
+
+//     x0  x1 x2 x3 x4 x5 x6
+// y0 [[0,  0, 0, 0, 0, 0, 0],
+// y1  [0,  0, 0, 0, 0, 0, 0],
+// y2  [0,  0, 0, 0, 0, 0, 0],
+// y3 ['2', 0, 0, 0, 0, 0, 0],
+// y4 ['1', 0, 0, 0, 0, 0, 0]]
+
+const boardIteration = (playerID, selectedColumn) => {
   // iterating backwards from y-max to y-min, aka bottom y coord to top y coord.
   console.log("Begin iterating to find free spot:");
-  for (let i = gameSizeY - 1; i >= 0; i--) {
-    console.log(`column x = ${userIsSelectingColumn}, row y = ${i}: ( ${Boolean(board[i][userIsSelectingColumn])} ), can I put my piece here? `);
+  // i iterates column from bottom to top
+  for (let i = 5; i >= 0; i--) {
+    console.log(`column x = ${selectedColumn}, row y = ${i}: ( ${Boolean(board[i][selectedColumn])} ), can I put my piece here? `);
 
-    if (board[i][userIsSelectingColumn] !== '1' && board[i][userIsSelectingColumn] !== '2') {
-      console.log(`Yes! No board piece found, I can drop a piece at x = ${userIsSelectingColumn}, y = ${i}`);
+    if (board[i][selectedColumn] !== '1' && board[i][selectedColumn] !== '2') {
+      console.log(`Yes! No board piece found, I can drop a piece at x = ${selectedColumn}, y = ${i}`);
 
-      // create function to drop new player piece in
-      // make the logic for the sql game board position update // use boardgame.io instead
-      // flip turn value in sql db  
+      board[i][selectedColumn] = playerID
 
       break;
     } else {
-      console.log(`No! Player "${board[i][userIsSelectingColumn]}" board piece exists at column x = ${userIsSelectingColumn}, row y = ${i}`);
+      console.log(`No! Player "${board[i][selectedColumn]}" board piece exists at column x = ${selectedColumn}, row y = ${i}`);
     }
 
-    // write a function to check board for winner, diagonal, anti-diagonal, horizontal ,vertical
-
-    // if winner exists, update db record with winner
   }
-};
+}
+
+boardIteration(1, selectedColumn)
+
+// Begin iterating to find free spot:
+// column x = 0, row y = 4: ( true ), can I put my piece here? 
+// No! Player "1" board piece exists at column x = 0, row y = 4
+// column x = 0, row y = 3: ( true ), can I put my piece here? 
+// No! Player "2" board piece exists at column x = 0, row y = 3
+// column x = 0, row y = 2: ( false ), can I put my piece here? 
+// Yes! No board piece found, I can drop a piece at x = 0, y = 2
+
+// make the logic for the sql game board position update
+// use boardgame.io instead
+// flip turn value in sql db  
+
+// write a function to check board for winner, diagonal, anti-diagonal, horizontal ,vertical
+
+// if winner exists, update db record with winner
 
 //test board
-board(7, 5);
 
 //console log outputs (without xy coords on board)
 
@@ -75,13 +102,6 @@ board(7, 5);
 // y3 ['2', 0, 0, 0, 0, 0, 0],
 // y4 ['1', 0, 0, 0, 0, 0, 0]]
 
-// Begin iterating to find free spot:
-// column x = 0, row y = 4: ( true ), can I put my piece here? 
-// No! Player "1" board piece exists at column x = 0, row y = 4
-// column x = 0, row y = 3: ( true ), can I put my piece here? 
-// No! Player "2" board piece exists at column x = 0, row y = 3
-// column x = 0, row y = 2: ( false ), can I put my piece here? 
-// Yes! No board piece found, I can drop a piece at x = 0, y = 2
 
 
 
