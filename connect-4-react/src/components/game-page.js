@@ -8,7 +8,7 @@
 // }
 
 import React, { useState } from "react";
-import GameBoard from './gameBoard'
+import Connect4 from '../gameLogic'
 
 const ConnectFour = () => {
   const [board, setBoard] = useState(Array(6).fill(null).map(() => Array(7).fill(null)));
@@ -33,3 +33,5 @@ const ConnectFour = () => {
     </div>
   );
 };
+
+export default ConnectFour;
