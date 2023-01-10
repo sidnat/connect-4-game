@@ -57,13 +57,13 @@
 
 import { Client } from 'boardgame.io/react';
 import Connect4 from "../gameLogic";
+import GAME from "./game"
 
 export default function GamePage() {
   return (
-    // <Client game={Connect4}>
-      // {/* Your React components that renders the UI */}
-    // </Client>
-    // Client({ game: Connect4 })
-    Client({ game: Connect4})
+ 
+    <div>
+    <GAME></GAME>
+    </div>
   )
 }
