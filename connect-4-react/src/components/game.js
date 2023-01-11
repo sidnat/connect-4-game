@@ -2,7 +2,10 @@ import React from 'react';
 import Board from './board';
 import './game.css';
 import { Button } from '@mui/material';
+import MyGame from '../helpers/bgioLogic'
+import { Client } from 'boardgame.io/react';
 
+const MyGameClient = Client({ game: MyGame, numPlayers: 2 });
 
 export default function GAME() {
   const status = 'Next player is X';
@@ -24,7 +27,10 @@ export default function GAME() {
       <div>{status}</div>
     </div>      
     <div className="game-board">
+    <MyGameClient>
+    
       <Board row1={row1} row2={row2} row3={row3} row4={row4} row5={row5} row6={row6}></Board>
+      </MyGameClient>
     </div>
   </div>
   );
