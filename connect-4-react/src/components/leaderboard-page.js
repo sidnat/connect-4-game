@@ -1,15 +1,15 @@
 import React from "react";
 import { MDBTable, MDBTableBody, MDBInput, MDBBtn } from "mdb-react-ui-kit";
-
+import './leaderboard-page.css'
 
 
 export default function LeaderboardPage(props) {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const { players } = props;
 
   return (
-    <div>
+    <div className="leaderboard">
       <h1>Leaderboard</h1>
 
       {!isLoggedIn && (
@@ -27,7 +27,7 @@ export default function LeaderboardPage(props) {
           striped
           bordered
           borderColor="primary"
-          style={{ width: "50%", margin: "auto", paddingTop: "100px" }}
+          // style={{ width: "50%", margin: "auto", paddingTop: "100px" }}
         >
           <MDBTableBody>
             {players.map((player) => (
