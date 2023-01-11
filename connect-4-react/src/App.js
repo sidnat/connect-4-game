@@ -36,7 +36,7 @@ function App() {
     </Navbar>
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
-      {mode === "PROFILE_PAGE" && <ProfilePage />}
+      {mode === "PROFILE_PAGE" && <ProfilePage players={players} />}
       {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={players} />}
     </Stack>
   );
