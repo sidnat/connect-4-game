@@ -16,7 +16,7 @@ function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
 
   const {
-    players
+    players, loggedIn
   } = useApplicationData();
 
   return (
@@ -30,7 +30,7 @@ function App() {
           <Nav.Link href="#leaderboard" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
           <Navbar.Text>
-            Signed in as: <a href="#logout">Connect User</a>
+            Signed in as: <a href="#logout">{loggedIn[0].name}</a>
           </Navbar.Text>
       </Container>
     </Navbar>
