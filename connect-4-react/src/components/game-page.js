@@ -57,13 +57,14 @@
 
 import { Client } from 'boardgame.io/react';
 import Connect4 from "../gameLogic";
-import GAME from "./game"
+import GAME from "./game";
+import './game-page.css';
 
 export default function GamePage() {
   return (
- 
-    <div>
-    <GAME></GAME>
+
+    <div className='row topspace'>
+      <GAME></GAME>
     </div>
-  )
+  );
 }
