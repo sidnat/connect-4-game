@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBTable, MDBTableBody, MDBInput, MDBBtn } from "mdb-react-ui-kit";
+import { MDBTable, MDBTableBody, MDBInput, MDBBtn, MDBContainer,MDBRow,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem } from "mdb-react-ui-kit";
 import './leaderboard-page.css'
 
 
@@ -10,25 +10,30 @@ export default function LeaderboardPage(props) {
 
   return (
     <div className="leaderboard">
-      <h1>Leaderboard</h1>
+    <section style={{ backgroundColor: "#eee" }}>
+      <MDBContainer className="py-5">
+        <MDBRow>
+          <MDBCol>
+            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+              <MDBBreadcrumbItem>
+                <a href="/">Home</a>
+              </MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active>Leaderboard</MDBBreadcrumbItem>
+            </MDBBreadcrumb>
+          </MDBCol>
+        </MDBRow>
+        </MDBContainer>
 
-      {!isLoggedIn && (
-        <div className="leaderboard-login-form">
-          <form>
-            <MDBInput label="username" type="text" />
-            <MDBInput label="password" type="password" />
-            <MDBBtn type="submit">Login</MDBBtn>
-          </form>
-        </div>
-      )}
 
       <div className="leaderboard-container">
+      <h1 className='leaderboard-title'>Leaderboard</h1>
         <MDBTable
           striped
           bordered
           borderColor="primary"
-          // style={{ width: "50%", margin: "auto", paddingTop: "100px" }}
+          style={{ width: "50%", margin: "auto", paddingTop: "100px" }}
         >
+          
           <MDBTableBody>
             {players.map((player) => (
               <tr key={player.id}>
@@ -39,6 +44,8 @@ export default function LeaderboardPage(props) {
           </MDBTableBody>
         </MDBTable>
       </div>
+    </section>
     </div>
+
   );
 }
