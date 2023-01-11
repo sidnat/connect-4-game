@@ -27,7 +27,7 @@ export const getLeaderboardTopFive = () => {
 export const getPlayerByID = (playerID) => {
   return new Promise(function(resolve, reject) {
     // might have to add ';' after ${playerID}
-    pool.query(`SELECT name, email FROM players WHERE id = ${playerID}`, (error, results) => {
+    pool.query(`SELECT name, email, wins FROM players WHERE id = ${playerID}`, (error, results) => {
       if (error) {
         reject(error);
       }

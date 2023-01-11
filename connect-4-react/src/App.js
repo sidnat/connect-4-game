@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -5,7 +6,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Stack from 'react-bootstrap/Stack';
 import useVisualMode from './hooks/useVisualMode';
-import React from 'react';
 import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
@@ -36,7 +36,7 @@ function App() {
     </Navbar>
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
-      {mode === "PROFILE_PAGE" && <ProfilePage />}
+      {mode === "PROFILE_PAGE" && <ProfilePage players={players} />}
       {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={players} />}
     </Stack>
   );
