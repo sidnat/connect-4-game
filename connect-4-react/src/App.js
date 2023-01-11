@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -5,7 +6,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Stack from 'react-bootstrap/Stack';
 import useVisualMode from './hooks/useVisualMode';
-import React from 'react';
 import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
@@ -16,7 +16,7 @@ function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
 
   const {
-    players, loggedIn
+    players
   } = useApplicationData();
 
   return (
@@ -30,7 +30,7 @@ function App() {
           <Nav.Link href="#leaderboard" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
           <Navbar.Text>
-            Signed in as: <a href="#logout">{loggedIn[0].name}</a>
+            Signed in as: <a href="#logout">Connect User</a>
           </Navbar.Text>
       </Container>
     </Navbar>
