@@ -1,8 +1,28 @@
-const board = (x, y) => {
-  const board = [];
-  let gameSizeX;
-  let gameSizeY;
+// First iterate through board to determine index positions => boarditeration
+// Then update index in correct row array to colour based on the playerID => boarditeration
+// Then Run win check => checkwinner
+// draw game full board logic => Check turn counter is greater than 42
+// If no winner, then change the turn 
+// If there is a winner, send update to databse and end the game
 
+
+export const gameFlow = (playerID, selectedColumn) => {
+  if (boardIteration(playerID, selectedColumn)) {
+    checkWinner()
+  }
+
+
+
+}
+
+
+
+
+const board = [];
+let gameSizeX;
+let gameSizeY;
+
+const setBoardSize = (x, y) => {
   //minimum board size 5x5
   //x coords 0 to x left to right, see line 21
   if (x > 5) {
@@ -19,71 +39,123 @@ const board = (x, y) => {
   }
 
   //     x0 x1 x2 x3 x4
-  // y0 [[0, 0, 0, 0, 0],
+  // y0 [[null, 0, 0, 0, 0],
   // y1  [0, 0, 0, 0, 0],
   // y2  [0, 0, 0, 0, 0],
   // y3  [0, 0, 0, 0, 0],
   // y4  [0, 0, 0, 0, 0]]
+  // y5
 
   //custom board creator
   for (let i = 0; i < gameSizeY; i++) {
     const temp = [];
     for (let j = 0; j < gameSizeX; j++) {
-      temp.push(0);
+      temp.push(null);
     }
     board.push(temp);
   }
+}
 
-  const userIsSelectingColumn = 0; //should be user inputted variable
+setBoardSize(7, 6);
 
-  board[4][userIsSelectingColumn] = '1'; //player 1 moves
-  board[3][userIsSelectingColumn] = '2'; //player 2 moves
-  console.log(board);
 
+
+
+
+
+const boardIteration = (playerID, selectedColumn) => {
   // iterating backwards from y-max to y-min, aka bottom y coord to top y coord.
   console.log("Begin iterating to find free spot:");
-  for (let i = gameSizeY - 1; i >= 0; i--) {
-    console.log(`column x = ${userIsSelectingColumn}, row y = ${i}: ( ${Boolean(board[i][userIsSelectingColumn])} ), can I put my piece here? `);
+  // i iterates column from bottom to top
+  for (let i = 5; i >= 0; i--) {
+    console.log(`column x = ${selectedColumn}, row y = ${i}: ( ${Boolean(board[i][selectedColumn])} ), can I put my piece here? `);
 
-    if (board[i][userIsSelectingColumn] !== '1' && board[i][userIsSelectingColumn] !== '2') {
-      console.log(`Yes! No board piece found, I can drop a piece at x = ${userIsSelectingColumn}, y = ${i}`);
+    if (board[i][selectedColumn] !== '1' && board[i][selectedColumn] !== '2') {
+      console.log(`Yes! No board piece found, I can drop a piece at x = ${selectedColumn}, y = ${i}`);
 
-      // create function to drop new player piece in
-      // make the logic for the sql game board position update
-      // flip turn value in sql db  
+      return board[i][selectedColumn] = playerID //colour
 
-      break;
+      //
+
     } else {
-      console.log(`No! Player "${board[i][userIsSelectingColumn]}" board piece exists at column x = ${userIsSelectingColumn}, row y = ${i}`);
+      console.log(`No! Player "${board[i][selectedColumn]}" board piece exists at column x = ${selectedColumn}, row y = ${i}`);
     }
-
-    // write a function to check board for winner, diagonal, horizontal ,vertical
-
-    // if winner exists, update db record with winner
   }
-};
 
-//test board
-board(7, 5);
+  //if no space in column, tell player column is full
+}
 
-//console log outputs (without xy coords on board)
+function checkWinner() {
+  // horizontal
+  for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < columns - 3; c++){
+         if (board[r][c] != ' ') {
+             if (board[r][c] == board[r][c+1] && board[r][c+1] == board[r][c+2] && board[r][c+2] == board[r][c+3]) {
+                 setWinner(r, c);
+                 return;
+             }
+         }
+      }
+ }
 
-//     x0  x1 x2 x3 x4 x5 x6
-// y0 [[0,  0, 0, 0, 0, 0, 0],
-// y1  [0,  0, 0, 0, 0, 0, 0],
-// y2  [0,  0, 0, 0, 0, 0, 0],
-// y3 ['2', 0, 0, 0, 0, 0, 0],
-// y4 ['1', 0, 0, 0, 0, 0, 0]]
+ // vertical
+ for (let c = 0; c < columns; c++) {
+     for (let r = 0; r < rows - 3; r++) {
+         if (board[r][c] != ' ') {
+             if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]) {
+                 setWinner(r, c);
+                 return;
+             }
+         }
+     }
+ }
 
-// Begin iterating to find free spot:
-// column x = 0, row y = 4: ( true ), can I put my piece here? 
-// No! Player "1" board piece exists at column x = 0, row y = 4
-// column x = 0, row y = 3: ( true ), can I put my piece here? 
-// No! Player "2" board piece exists at column x = 0, row y = 3
-// column x = 0, row y = 2: ( false ), can I put my piece here? 
-// Yes! No board piece found, I can drop a piece at x = 0, y = 2
+ // anti diagonal
+ for (let r = 0; r < rows - 3; r++) {
+     for (let c = 0; c < columns - 3; c++) {
+         if (board[r][c] != ' ') {
+             if (board[r][c] == board[r+1][c+1] && board[r+1][c+1] == board[r+2][c+2] && board[r+2][c+2] == board[r+3][c+3]) {
+                 setWinner(r, c);
+                 return;
+             }
+         }
+     }
+ }
+
+ // diagonal
+ for (let r = 3; r < rows; r++) {
+     for (let c = 0; c < columns - 3; c++) {
+         if (board[r][c] != ' ') {
+             if (board[r][c] == board[r-1][c+1] && board[r-1][c+1] == board[r-2][c+2] && board[r-2][c+2] == board[r-3][c+3]) {
+                 setWinner(r, c);
+                 return;
+             }
+         }
+     }
+ }
+}
+
+function setWinner(r, c) {
+  let winner = document.getElementById("winner");
+  if (board[r][c] == playerRed) {
+      winner.innerText = "Red Wins";             
+  } else {
+      winner.innerText = "Yellow Wins";
+  }
+  gameOver = true;
+}
 
 
-
-
-// export default board;
+const checkDraw = (x, y, turns) => {
+  let start = 0;
+  
+  if (turns) {
+    start++;
+  }
+  
+  If (start === (x * y)) {
+    return
+    console.log("its a draw")
+  }
+  }
+  
