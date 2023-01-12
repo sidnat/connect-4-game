@@ -13,8 +13,10 @@ export default function GamePage(props) {
   // const { } = props;
 
   return (
+    
     <div className="row topspace">
       < App />
     </div>
+    
   );
 }

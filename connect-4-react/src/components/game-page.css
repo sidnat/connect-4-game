@@ -1,7 +1,14 @@
 .row {
   margin: auto;
+  
 }
 
 .topspace {
   margin-top: 50px;
+  background-color: #eee;
+}
+
+#root {
+  background-color: #eee;
+  height: 100vh;
 }

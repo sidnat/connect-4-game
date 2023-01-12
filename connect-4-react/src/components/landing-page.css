@@ -27,3 +27,8 @@
   left: 240px;
  
 }
+
+.fullBody{
+  background-color: #eee;
+  height: 100vh;
+}

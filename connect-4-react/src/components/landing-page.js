@@ -5,6 +5,7 @@ export default function LandingPage(props) {
   // const { } = props;
 
   return (
+    <div className="fullBody">
     <div className="hero">
       <div className="mainimage" class="img-fluid">
       <div className="parent">
@@ -13,6 +14,6 @@ export default function LandingPage(props) {
     </div>
     </div>
     </div>
-    
+    </div>
   );
 }
