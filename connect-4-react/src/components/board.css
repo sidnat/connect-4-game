@@ -2,5 +2,21 @@
   border: 1px solid black;
   background-color: #0076FF;
   padding: 20px;
-  border-radius: 2%;
+  border-radius: 1.5%;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
 }
