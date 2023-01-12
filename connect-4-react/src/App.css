@@ -60,7 +60,7 @@
 
   @media (max-width: 1200px) {
     .navbar-brand {
-      height: 80px;
+      
       display: flex; 
       flex-direction:column;
     }}
