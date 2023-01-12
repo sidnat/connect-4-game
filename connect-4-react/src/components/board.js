@@ -42,10 +42,10 @@ export function Connect4Board({ ctx, G, moves }) {
       const id = gameSizeX * i + j;
       cells.push(
         <td key={id}>
-          {/* hard coded player '0' */}
+          {/* hard coded player '0' displays red piece*/}
           {/* {G.cells[i][j]} will display player number as text*/}
           {G.cells[i][j] === '0' && <div className="circle red" style={cellStyle}></div>}
-          {/* hard coded player '1' */}
+          {/* hard coded player '1' displays yellow piece*/}
           {/* {G.cells[i][j]} will display player number as text*/}
           {G.cells[i][j] === '1' && <div className="circle yellow" style={cellStyle}></div>}
           {/* if cell is empty, show white background and allow click */}
