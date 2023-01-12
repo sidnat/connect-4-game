@@ -1,39 +1,33 @@
-import React from 'react';
-import Board from './board';
-import './game.css';
-import { Button } from '@mui/material';
-import MyGame from '../helpers/bgioLogic'
-import { Client } from 'boardgame.io/react';
+import { setBoardSize, findLowestCellByColumn, checkWinner, IsDraw } from '../utils/gameUtils';
 
-const MyGameClient = Client({ game: MyGame, numPlayers: 2 });
+//hard coded game board size
+export const gameSizeX = 7
+export const gameSizeY = 6
 
-export default function GAME() {
-  const status = 'Next player is X';
-  const moves = (
-    <Button variant="contained" color="success">Start Game</Button>
-  );
+//Connect 4 board
+export const Connect4 = {
+  setup: () => ({ cells: setBoardSize(gameSizeX, gameSizeY) }),
 
-  const row1 = Array(7).fill(null);
-  const row2 = Array(7).fill(null);
-  const row3 = Array(7).fill(null);
-  const row4 = Array(7).fill(null);
-  const row5 = Array(7).fill(null);
-  const row6 = Array(7).fill(null);
+  turn: {
+    minMoves: 1,
+    maxMoves: 1,
+  },
 
-  return (
-    <div>
-    <div className="game-info spacebetween spaceunder">
-      <div>{moves}</div>
-      <div>{status}</div>
-    </div>      
-    <div className="game-board">
-    <MyGameClient>
-    
-      <Board row1={row1} row2={row2} row3={row3} row4={row4} row5={row5} row6={row6}></Board>
-      </MyGameClient>
-    </div>
-  </div>
-  );
+  moves: {
+    clickCell: ({ G, playerID }, y, x) => {
+      // find lowest cell using x column and inputs playerId in G.cells array
+      const lowestCellInColumn = findLowestCellByColumn(G.cells, x);
+      G.cells[lowestCellInColumn][x] = playerID;
+    }
+  },
 
-}
-
+  // ends the game if checkWinner or IsDraw function returns true
+  endIf: ({ G, ctx }) => {
+    if (checkWinner(G.cells, gameSizeX, gameSizeY)) {
+      return { winner: ctx.currentPlayer };
+    }
+    if (IsDraw(G.cells)) {
+      return { draw: true };
+    }
+  },
+};
