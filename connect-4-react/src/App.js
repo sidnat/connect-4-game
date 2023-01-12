@@ -16,8 +16,11 @@ function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
 
   const {
-    players
+    data
   } = useApplicationData();
+
+  console.log(data)
+  // const isLoggedIn = true;
 
   return (
     <Stack>
@@ -30,14 +33,15 @@ function App() {
           <Nav.Link href="#leaderboard" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
           <Navbar.Text>
-            Signed in as: <a href="#logout">Connect User</a>
+            Signed in as: <a href="#logout">{data.login}</a>
           </Navbar.Text>
+
       </Container>
     </Navbar>
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
-      {mode === "PROFILE_PAGE" && <ProfilePage players={players} />}
-      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={players} />}
+      {mode === "PROFILE_PAGE" && <ProfilePage players={data.login} />}
+      {mode === "LEADERBOARD_PAGE" && <LeaderboardPage players={data.leaderboards} />}
     </Stack>
   );
 }
