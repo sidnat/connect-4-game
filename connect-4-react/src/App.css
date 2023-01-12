@@ -57,3 +57,10 @@
   .c4image{
     width: 170px;
   }
+
+  @media (max-width: 1200px) {
+    .navbar-brand {
+      height: 80px;
+      display: flex; 
+      flex-direction:column;
+    }}
