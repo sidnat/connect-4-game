@@ -6,6 +6,7 @@ import './leaderboard-page.css'
 export default function LeaderboardPage(props) {
   const { players } = props;
 
+  console.log("leaderboard page", players)
   return (
     <div className="leaderboard">
     <section style={{ backgroundColor: "#eee" }}>
