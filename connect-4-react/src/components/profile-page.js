@@ -45,7 +45,8 @@ export default class ProfilePage extends React.Component {
     const playerData = player[0];
     console.log(playerData)
   return (
-    <section style={{ backgroundColor: "#eee" }}>
+    
+    <section style={{ backgroundColor: "#eee", height: "100vh" }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
@@ -69,6 +70,7 @@ export default class ProfilePage extends React.Component {
                   style={{ width: "150px" }}
                   fluid
                 />
+                 
                 <p className="text-muted mb-1">Connect 4 Master</p>
               </MDBCardBody>
             </MDBCard>
@@ -120,12 +122,9 @@ export default class ProfilePage extends React.Component {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-   
-
-
     </section>
-
-
+   
+   
 
   );
 }
