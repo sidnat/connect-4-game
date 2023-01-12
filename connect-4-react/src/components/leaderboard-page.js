@@ -8,7 +8,7 @@ import {
   MDBBreadcrumb,
   MDBBreadcrumbItem,
   MDBTableHead,
-  MDBTableCell
+  MDBTableCell,
 } from "mdb-react-ui-kit";
 import "./leaderboard-page.css";
 
@@ -36,19 +36,27 @@ export default function LeaderboardPage(props) {
           <MDBTable
             striped
             bordered
-            borderColor="black"
-            style={{ width: "85%", margin: "auto"}}
+            borderColor="dark"
+            style={{ width: "85%", margin: "auto" }}
           >
             <MDBTableHead color="primary-color" textWhite>
               <tr>
-                <td><strong>Name</strong></td>
-                <td><strong>Wins</strong></td>
+                <td>
+                  <strong>#</strong>
+                </td>
+                <td>
+                  <strong>Name</strong>
+                </td>
+                <td>
+                  <strong>Wins</strong>
+                </td>
               </tr>
             </MDBTableHead>
 
-            <MDBTableBody >
-              {players.map((player) => (
+            <MDBTableBody>
+              {players.map((player, index) => (
                 <tr key={player.id}>
+                  <td>{index + 1}</td>
                   <td>{player.name}</td>
                   <td>{player.wins} wins</td>
                 </tr>
