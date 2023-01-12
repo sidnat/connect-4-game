@@ -14,6 +14,7 @@ import { useApplicationData } from './hooks/useApplicationData';
 
 function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
+ 
 
   const {
     data
@@ -26,11 +27,13 @@ function App() {
     <Stack>
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="#home" onClick={() => transition('LANDING_PAGE')}>Connect 4</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#game" onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
-          <Nav.Link href="#profile" onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
-          <Nav.Link href="#leaderboard" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
+       
+        <Navbar.Brand href="#home" className="navbrand text-white text-outline" onClick={() => transition('LANDING_PAGE')}>Connect 4</Navbar.Brand>
+        
+        <Nav className="ml-auto">
+          <Nav.Link href="#game" className="text-white" onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
+          <Nav.Link href="#profile" className="text-white " onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
+          <Nav.Link href="#leaderboard" className="text-white" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
           <Navbar.Text>
             Signed in as: <a href="#logout">{data.login}</a>

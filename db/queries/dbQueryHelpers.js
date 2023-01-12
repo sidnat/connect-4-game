@@ -58,6 +58,17 @@ export const getPlayerByID = (playerID) => {
     });
 };
 
+export const getPlayerByEmail = (playerEmail) => {
+  //logic to get existing player (will be fake seed) by player ID, for profile page
+  return db.query(`SELECT email FROM players WHERE id = ${playerEmail};`)
+    .then(data => {
+      return data.rows;
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+};
+
 export const getGameByID = (gameID) => {
   //logic to retrieve a game using game id and maybe player id
   // add game link to db and then pull to display on users profile page, check if winner is present and don't display finished games
