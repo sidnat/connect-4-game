@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.nav > li > a:hover{
+  background-color:rgb(215, 25, 25);
+}
+
+.navbrand {
+  font-weight: bold;
+  }
+ 
+  .navbar{
+    font-weight: bold;
+  }
