@@ -24,9 +24,9 @@ function App() {
     <Stack>
     <Navbar bg="primary" variant="dark">
       <Container>
-       
-        <Navbar.Brand href="#home" className="navbrand text-white text-outline" onClick={() => transition('LANDING_PAGE')}>Connect 4</Navbar.Brand>
-        
+        <div className="c4image">
+       <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo.png" alt="logo" class="img-responsive"/></Navbar.Brand>
+        </div>
         <Nav className="ml-auto">
           <Nav.Link href="#game" className="text-white" onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
           <Nav.Link href="#profile" className="text-white " onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>

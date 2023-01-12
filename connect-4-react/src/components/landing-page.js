@@ -6,9 +6,13 @@ export default function LandingPage(props) {
 
   return (
     <div className="hero">
-    <div className="mainimage" class="img-fluid">
-    <img src="/images/connect4white.jpg" alt="Connect4"/>
+      <div className="mainimage" class="img-fluid">
+      <div className="parent">
+    <img className="image1" src="/images/connect4white.jpg" alt="Connect4"/>
+    
     </div>
     </div>
+    </div>
+    
   );
 }
