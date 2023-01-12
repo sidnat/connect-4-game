@@ -1,11 +1,9 @@
 import React from "react";
-import { MDBTable, MDBTableBody, MDBInput, MDBBtn, MDBContainer,MDBRow,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem } from "mdb-react-ui-kit";
+import { MDBTable, MDBTableBody, MDBContainer,MDBRow,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem } from "mdb-react-ui-kit";
 import './leaderboard-page.css'
 
 
 export default function LeaderboardPage(props) {
-  const isLoggedIn = true;
-
   const { players } = props;
 
   return (
