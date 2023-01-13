@@ -9,10 +9,14 @@ import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
+import { useState } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const {
     players
@@ -33,6 +37,26 @@ function App() {
               <Nav.Link href="/leaderboard/" >Leaderboard</Nav.Link>
             </nav>
 
+            {!isLoggedIn &&
+            <Form>
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicEmail">
+                <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
+              </Form.Group>
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicPassword">
+                <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
+              </Form.Group>
+
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicCheckbox">
+              </Form.Group>
+
+              <Button size="sm" variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
+            </Form>
+          }
+          {isLoggedIn &&
+            <Form>
+              <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
+            </Form>
+          }
           </Container>
         </Navbar>
 
