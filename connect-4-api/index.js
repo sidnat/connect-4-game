@@ -7,7 +7,8 @@ import {
   getGameByID,
   getPiecesByPlayerID,
   setGameWinner,
-  addPlayerWin
+  addPlayerWin,
+  loginValidation
 } from './connect_helpers.js';
 
 const app = express();
@@ -46,6 +47,16 @@ app.get('/player/:id', (req, res) => {
 // post logic
 app.post('/addnewgame', (req, res) => {
   addGame(req.body)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.post('/login', (req, res) => {
+  loginValidation(req.body.email, req.body.password)
     .then(response => {
       res.status(200).send(response);
     })

@@ -13,6 +13,28 @@ const pool = new Pool({
   database: process.env.DB_NAME
 });
 
+export const loginValidation = (email, password) => {
+  return new Promise(function(resolve, reject) {
+    pool.query(`SELECT id, name, email, password, wins FROM players WHERE email = ${email}`, (error, results) => {
+      let userObject = false;
+      
+      if (error) {
+        reject(error);
+      }
+      if (password === results.rows[0].password) {
+        userObject = {
+          id: results.rows[0].id,
+          name: results.rows[0].name,
+          email: results.rows[0].email,
+          wins: results.rows[0].wins
+        }
+      }
+
+      resolve(userObject);
+    });
+  });
+}
+
 export const getLeaderboardTopFive = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT id, name, wins FROM players ORDER BY wins DESC LIMIT 5', (error, results) => {
