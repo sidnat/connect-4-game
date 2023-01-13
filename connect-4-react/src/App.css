@@ -54,6 +54,17 @@
    
   }
 
+  .navilinks{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ml-auot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .c4image{
     width: 170px;
   }
