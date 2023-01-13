@@ -1,6 +1,7 @@
 import React from 'react';
 import './board.css';
 import Alert from '@mui/material/Alert';
+import { Button } from '@mui/material';
 import { gameSizeX, gameSizeY } from './game';
 
 export function Connect4Board({ ctx, G, moves }) {
@@ -13,13 +14,31 @@ export function Connect4Board({ ctx, G, moves }) {
     winner =
       ctx.gameover.winner !== undefined ? (
         <div id="winner">
-          <Alert variant="filled" severity="success">
+          <Alert
+            variant="filled"
+            severity="success"
+            action={
+              // change the href once we figure react router out
+              <Button href="#game" color="inherit" size="small">
+                START A NEW GAME
+              </Button>
+            }
+          >
             Congratulations! We have a Winner, Player: {ctx.gameover.winner}
           </Alert>
         </div>
       ) : (
         <div id="winner">
-          <Alert variant="filled" severity="warning">
+          <Alert
+            variant="filled"
+            severity="warning"
+            action={
+              // change the href once we figure react router out
+              <Button href="#game" color="inherit" size="small">
+                START A NEW GAME
+              </Button>
+            }
+          >
             Game has ended in a Draw! No player has won!
           </Alert>
         </div>
@@ -34,7 +53,7 @@ export function Connect4Board({ ctx, G, moves }) {
     textAlign: 'center',
   };
 
-  
+
   let tbody = [];
   for (let i = 0; i < gameSizeY; i++) {
     let cells = [];
@@ -43,10 +62,10 @@ export function Connect4Board({ ctx, G, moves }) {
       cells.push(
         <td key={id}>
           {/* hard coded player '0' displays red piece*/}
-          {/* {G.cells[i][j]} will display player number as text*/}
+          {/* {G.cells[i][j]} will display player number as text in circle*/}
           {G.cells[i][j] === '0' && <div className="circle red" style={cellStyle}></div>}
           {/* hard coded player '1' displays yellow piece*/}
-          {/* {G.cells[i][j]} will display player number as text*/}
+          {/* {G.cells[i][j]} will display player number as text in circle*/}
           {G.cells[i][j] === '1' && <div className="circle yellow" style={cellStyle}></div>}
           {/* if cell is empty, show white background and allow click */}
           {G.cells[i][j] === null && <button className="circle white" style={cellStyle} onClick={() => onClick(i, j)} />}
