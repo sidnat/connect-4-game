@@ -32,7 +32,7 @@ function App() {
     <Navbar bg="primary" variant="dark">
       <Container>
         <div className="c4image">
-       <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo.png" alt="logo" class="img-responsive"/></Navbar.Brand>
+       <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo51px.png" alt="logo" class="img-responsive"/></Navbar.Brand>
         </div>
         <Nav className="ml-auto h4">
         
