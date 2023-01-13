@@ -29,7 +29,7 @@ function App() {
       <Navbar bg="primary" variant="dark">
         <Container>
           <div className="c4image">
-            <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo51px.png" alt="logo" class="img-responsive" /></Navbar.Brand>
+            <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo75px.png" alt="logo" class="img-responsive" /></Navbar.Brand>
           </div>
           <Nav className="ml-auto">
             <Nav.Link href="#game" className="text-white " onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
