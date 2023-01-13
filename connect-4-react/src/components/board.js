@@ -19,7 +19,7 @@ export function Connect4Board({ ctx, G, moves }) {
             severity="success"
             action={
               // change the href once we figure react router out
-              <Button href="#game" color="inherit" size="small">
+              <Button href="/game" color="inherit" size="small">
                 START A NEW GAME
               </Button>
             }
@@ -34,7 +34,7 @@ export function Connect4Board({ ctx, G, moves }) {
             severity="warning"
             action={
               // change the href once we figure react router out
-              <Button href="#game" color="inherit" size="small">
+              <Button href="/game" color="inherit" size="small">
                 START A NEW GAME
               </Button>
             }

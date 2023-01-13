@@ -45,18 +45,18 @@ function App() {
 
         <Navbar bg="primary" variant="dark">
           <Container>
-
+          
             <div className="c4image">
               <Navbar.Brand href="/" className="navimage" ><img src="/images/connect4logo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
             </div>
             <div className="navcontainer">
-              <nav className="ml-auto">
-                <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Connect4</Nav.Link>
-                <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
-                <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
-              </nav>
-            </div>
-
+            <nav className="ml-auto">
+              <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Connect4</Nav.Link>
+              <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
+              <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
+           </nav>
+           </div>
+        
             {!isLoggedIn &&
               <Form className="login-form" onSubmit={handleSubmit}>
                 <div className="input-text">
