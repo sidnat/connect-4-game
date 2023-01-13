@@ -11,10 +11,17 @@ import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
 import { useApplicationData } from './hooks/useApplicationData';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+
 
 function App() {
   const {transition, mode} = useVisualMode('LANDING_PAGE');
- 
+
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  
 
   const {
     players
@@ -33,11 +40,34 @@ function App() {
           <Nav.Link href="#profile" className="text-white " onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
           <Nav.Link href="#leaderboard" className="text-white" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
         </Nav>
-          <Navbar.Text>
+          {/* <Navbar.Text>
             Signed in as: <a href="#logout">Connect User</a>
-          </Navbar.Text>
+          </Navbar.Text> */}
+          {!isLoggedIn && 
+        <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        </Form.Group>
+        <Button variant="success" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
+      </Form>
+          }
+          {isLoggedIn && 
+                  <Form>
+        <Button variant="warning" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
+           </Form>
+          }
       </Container>
+
     </Navbar>
+
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
       {mode === "PROFILE_PAGE" && <ProfilePage players={players} />}
