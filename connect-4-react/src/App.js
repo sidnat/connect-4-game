@@ -15,13 +15,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
-
 function App() {
-  const {transition, mode} = useVisualMode('LANDING_PAGE');
+  const { transition, mode } = useVisualMode('LANDING_PAGE');
 
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const {
     players
@@ -29,44 +26,41 @@ function App() {
 
   return (
     <Stack>
-    <Navbar bg="primary" variant="dark">
-      <Container>
-        <div className="c4image">
-       <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo51px.png" alt="logo" class="img-responsive"/></Navbar.Brand>
-        </div>
-        <Nav className="ml-auto">
-        
-          <Nav.Link href="#game" className="text-white " onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
-          <Nav.Link href="#profile" className="text-white " onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
-          <Nav.Link href="#leaderboard" className="text-white" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
-        </Nav>
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <div className="c4image">
+            <Navbar.Brand href="#home" className="navimage" onClick={() => transition('LANDING_PAGE')}><img src="/images/connect4logo51px.png" alt="logo" class="img-responsive" /></Navbar.Brand>
+          </div>
+          <Nav className="ml-auto">
+            <Nav.Link href="#game" className="text-white " onClick={() => transition('GAME_PAGE')}>New game</Nav.Link>
+            <Nav.Link href="#profile" className="text-white " onClick={() => transition('PROFILE_PAGE')}>Profile page</Nav.Link>
+            <Nav.Link href="#leaderboard" className="text-white" onClick={() => transition('LEADERBOARD_PAGE')}>Leaderboard</Nav.Link>
+          </Nav>
           {/* <Navbar.Text>
             Signed in as: <a href="#logout">Connect User</a>
           </Navbar.Text> */}
-          {!isLoggedIn && 
+          {!isLoggedIn &&
             <Form>
               <Form.Group className="mb-3 d-inline-block" controlId="formBasicEmail">
-              <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
+                <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
               </Form.Group>
               <Form.Group className="mb-3 d-inline-block" controlId="formBasicPassword">
-              <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
+                <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
               </Form.Group>
-        
+
               <Form.Group className="mb-3 d-inline-block" controlId="formBasicCheckbox">
               </Form.Group>
-        
+
               <Button size="sm" variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
             </Form>
           }
-          {isLoggedIn && 
+          {isLoggedIn &&
             <Form>
               <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
             </Form>
           }
-      </Container>
-
-    </Navbar>
-
+        </Container>
+      </Navbar>
       {mode === "LANDING_PAGE" && <LandingPage />}
       {mode === "GAME_PAGE" && <GamePage />}
       {mode === "PROFILE_PAGE" && <ProfilePage players={players} />}
