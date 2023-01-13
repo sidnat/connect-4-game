@@ -14,6 +14,7 @@ import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 
+
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,49 +23,68 @@ function App() {
     players
   } = useApplicationData();
 
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const users = [{ email: "will@gmail.com", password: "password" }];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const account = users.find((user) => user.email === email);
+    if (account && account.password === password) {
+      setIsLoggedIn(true)
+      console.log("it worked!")
+    }
+    else {
+      console.log("nope")
+    }
+  };
+
   return (
     <Stack>
       <Router>
 
         <Navbar bg="primary" variant="dark">
           <Container>
+
             <div className="c4image">
               <Navbar.Brand href="/" className="navimage" ><img src="/images/connect4logo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
             </div>
-            <nav className="ml-auto">
-              <Nav.Link href="/game" >Connect4</Nav.Link>
-              <Nav.Link href="/profile/" >Profile</Nav.Link>
-              <Nav.Link href="/leaderboard/" >Leaderboard</Nav.Link>
-            </nav>
+            <div className="navcontainer">
+              <nav className="ml-auto">
+                <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Connect4</Nav.Link>
+                <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
+                <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
+              </nav>
+            </div>
 
             {!isLoggedIn &&
-            <Form className="login-form">
-              <div className="input-text">
-                <Form.Group className="email-form" controlId="formBasicEmail">
-                  <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
-                </Form.Group>
-                <Form.Group className="password-form" controlId="formBasicPassword">
-                  <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
-                </Form.Group>
-              </div>
-              <div className="login-button">
-               <Button variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
-              </div>
-            </Form>
-          }
-          {isLoggedIn &&
-            <Form>
-              <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
-            </Form>
-          }
+              <Form className="login-form" onSubmit={handleSubmit}>
+                <div className="input-text">
+                  <Form.Group className="email-form" controlId="formBasicEmail">
+                    <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} onChange={(e) => setEmail(e.target.value)} />
+                  </Form.Group>
+                  <Form.Group className="password-form" controlId="formBasicPassword">
+                    <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px'}} onChange={(e) => setpassword(e.target.value)} />
+                  </Form.Group>
+                </div>
+                <div className="login-button">
+                  <Button variant="success" className="d-inline-block" type="submit">Login</Button>
+                </div>
+              </Form>
+            }
+            {isLoggedIn &&
+              <Form>
+                <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
+              </Form>
+            }
           </Container>
         </Navbar>
 
         <Routes>
-            <Route path="/" element={<LandingPage/>}></Route>
-            <Route path="/game" element={<GamePage/>}></Route>
-            <Route path="/profile/" element={<ProfilePage />}></Route>
-            <Route path="/leaderboard/" element={<LeaderboardPage players={players} />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/game" element={<GamePage />}></Route>
+          <Route path="/profile/" element={<ProfilePage />}></Route>
+          <Route path="/leaderboard/" element={<LeaderboardPage players={players} />}></Route>
         </Routes>
 
       </Router>
