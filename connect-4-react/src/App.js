@@ -38,18 +38,18 @@ function App() {
             </nav>
 
             {!isLoggedIn &&
-            <Form>
-              <Form.Group className="mb-3 d-inline-block" controlId="formBasicEmail">
-                <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
-              </Form.Group>
-              <Form.Group className="mb-3 d-inline-block" controlId="formBasicPassword">
-                <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
-              </Form.Group>
-
-              <Form.Group className="mb-3 d-inline-block" controlId="formBasicCheckbox">
-              </Form.Group>
-
-              <Button size="sm" variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
+            <Form className="login-form">
+              <div className="input-text">
+                <Form.Group className="email-form" controlId="formBasicEmail">
+                  <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
+                </Form.Group>
+                <Form.Group className="password-form" controlId="formBasicPassword">
+                  <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
+                </Form.Group>
+              </div>
+              <div className="login-button">
+               <Button variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
+              </div>
             </Form>
           }
           {isLoggedIn &&
