@@ -44,25 +44,24 @@ function App() {
             Signed in as: <a href="#logout">Connect User</a>
           </Navbar.Text> */}
           {!isLoggedIn && 
-        <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        </Form.Group>
-        <Button variant="success" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
-      </Form>
+            <Form>
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicEmail">
+              <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} />
+              </Form.Group>
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicPassword">
+              <Form.Control size="sm" type="password" placeholder="Password" className="d-inline-block" style={{ width: '150px' }} />
+              </Form.Group>
+        
+              <Form.Group className="mb-3 d-inline-block" controlId="formBasicCheckbox">
+              </Form.Group>
+        
+              <Button size="sm" variant="success" className="d-inline-block" onClick={() => setIsLoggedIn(true)} type="submit">Login</Button>
+            </Form>
           }
           {isLoggedIn && 
-                  <Form>
-        <Button variant="warning" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
-           </Form>
+            <Form>
+              <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
+            </Form>
           }
       </Container>
 
