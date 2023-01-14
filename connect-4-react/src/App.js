@@ -26,6 +26,7 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
+  const [user, setUser] = useState("")
  
 
   const handleSubmit = (e) => {
@@ -35,8 +36,10 @@ function App() {
       password: password
   })
   .then(response => {
+    console.log(response)
       // Handle successful login
       if(response.status === 200){
+          setUser(response.data.name)
           setIsLoggedIn(true);
           console.log("it worked!")
       }
@@ -81,9 +84,12 @@ function App() {
               </Form>
             }
             {isLoggedIn &&
-              <Form>
+              <Navbar.Text className="login-form">
+              Signed in as: {user}
+              <Form className="login-button">
                 <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
               </Form>
+              </Navbar.Text>
             }
           </Container>
         </Navbar>
