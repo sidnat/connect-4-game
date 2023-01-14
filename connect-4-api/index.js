@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import {
   getLeaderboardTopFive,
   addGame,
@@ -15,6 +16,7 @@ const app = express();
 const port = 3003;
 
 app.use(express.json());
+app.use(bodyParser.json())
 app.use(function(req, res, next) {
   // change localhost:3002 to 3000 if you don't have vagrant vm
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
@@ -22,6 +24,8 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
 });
+
+var jsonParser = bodyParser.json()
 
 // get logic
 app.get('/leaderboard', (req, res) => {
@@ -54,8 +58,9 @@ app.post('/addnewgame', (req, res) => {
       res.status(500).send(error);
     });
 });
-
-app.post('/login', (req, res) => {
+ 
+app.post('/login', jsonParser, async (req, res) => {
+  console.log(req.body)
   loginValidation(req.body.email, req.body.password)
     .then(response => {
       res.status(200).send(response);
@@ -64,6 +69,7 @@ app.post('/login', (req, res) => {
       res.status(500).send(error);
     });
 });
+
 
 // delete logic
 // app.delete('/merchants/:id', (req, res) => {
