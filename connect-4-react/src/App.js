@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 
 function App() {
@@ -25,19 +26,26 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const users = [{ email: "will@gmail.com", password: "password" }];
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const account = users.find((user) => user.email === email);
-    if (account && account.password === password) {
-      setIsLoggedIn(true)
-      console.log("it worked!")
-    }
-    else {
-      console.log("nope")
-    }
-  };
+    axios.post('http://localhost:3003/login', {
+      email: email,
+      password: password
+  })
+  .then(response => {
+      // Handle successful login
+      if(response.status === 200){
+          setIsLoggedIn(true);
+          console.log("it worked!")
+      }
+  })
+  .catch(error => {
+      // Handle failed login
+      console.log(error);
+  });
+};
 
   return (
     <Stack>
@@ -45,7 +53,7 @@ function App() {
 
         <Navbar bg="primary" variant="dark">
           <Container>
-          
+          <Form className="login-form" onSubmit={handleSubmit}></Form>
             <div className="c4image">
               <Navbar.Brand href="/" className="navimage" ><img src="/images/connect4logo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
             </div>
