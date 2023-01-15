@@ -17,7 +17,7 @@ import { Button, Form } from 'react-bootstrap';
 
 function App() {
 
-  const { players, handleSubmit, user, isLoggedIn, handleLogout } = useApplicationData();
+  const { data, handleSubmit, user, isLoggedIn, handleLogout } = useApplicationData();
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -68,8 +68,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/game" element={<GamePage />}></Route>
-          <Route path="/profile/" element={<ProfilePage players={players} />}></Route>
-          <Route path="/leaderboard/" element={<LeaderboardPage players={players} />}></Route>
+          <Route path="/profile/" element={<ProfilePage />}></Route>
+          <Route path="/leaderboard/" element={<LeaderboardPage players={data.leaderboard} />}></Route>
         </Routes>
 
       </Router>

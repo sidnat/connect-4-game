@@ -2,7 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export function useApplicationData() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    leaderboard: []
+  });
   const [user, setUser] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const userStatus = localStorage.getItem("user")
@@ -10,11 +12,18 @@ export function useApplicationData() {
   useEffect(() => {
     const leaderboardURL = `http://localhost:3003/leaderboard`;
 
-    axios.get(leaderboardURL).then((res) => {
-      setData(res.data);
-    });
-  }, []);
-    
+    Promise.all([
+      axios.get(leaderboardURL)
+    ])
+      .then((all) => {
+        setData(prev => ({
+          ...prev,
+          leaderboard: all[0].data
+        }))
+      })
+    }, [])
+
+          
   const handleSubmit = (e, email, password) => {
     e.preventDefault();
     axios
@@ -40,5 +49,5 @@ export function useApplicationData() {
     localStorage.setItem("user", null)
   }
   
-  return { players: data, handleSubmit, user, isLoggedIn, handleLogout, userStatus };
+  return { data, handleSubmit, user, isLoggedIn, handleLogout, userStatus };
 }
