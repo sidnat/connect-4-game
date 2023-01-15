@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   MDBCol,
   MDBContainer,
@@ -10,42 +10,46 @@ import {
   MDBCardImage,
   MDBBreadcrumb,
   MDBBreadcrumbItem,
-
 } from "mdb-react-ui-kit";
+import Cookies from "js-cookie";
 
 
+import { useState, useEffect } from "react";
 
+export default function ProfilePage() {
+  const [player, setPlayer] = useState(null);
+  const [error, setError] = useState(null);
 
-export default class ProfilePage extends React.Component {
-  state = {
-    player: null
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const playerID = 3;
+        const response = await axios.get(
+          `http://localhost:3003/player/${playerID}`
+        );
+        console.log(response.data);
+        setPlayer(response.data);
+      } catch (error) {
+        setError("Unable to fetch player data");
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
-  async componentDidMount() {
-    const playerID = 3
-    try {
-      const response = await axios.get(`http://localhost:3003/player/${playerID}`);
-      console.log(response.data)
-      this.setState({ player: response.data });
-    } catch (error) {
-      this.setState({error: "Unable to fetch player data"})
-      console.error(error);
-    }
+  if (!player) {
+    return <div>Loading...</div>;
   }
-  render() {
-    const { player, error } = this.state;
-    if (error) {
-      return <div>{error}</div>;
-    }
-   
-    if (!player) {
-      return <div>Loading...</div>;
-    }
 
-    const playerData = player[0];
-    console.log(playerData)
+  const playerData = player[0];
+  console.log(playerData);
+
   return (
-    
     <section style={{ backgroundColor: "#eee", height: "100vh" }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -70,62 +74,61 @@ export default class ProfilePage extends React.Component {
                   style={{ width: "150px" }}
                   fluid
                 />
-                 
-                <p className="text-muted mb-1">Connect 4 Master</p>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol lg="8">
-            <MDBCard className="mb-4">
-              <MDBCardBody>
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                    {playerData.name}
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                    {playerData.email}
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Wins</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{playerData.wins}</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Losses</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">2</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
-   
-   
 
-  );
-}
+  <p className="text-muted mb-1">Connect 4 Master</p>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol lg="8">
+                <MDBCard className="mb-4">
+                  <MDBCardBody>
+                    <MDBRow>
+                      <MDBCol sm="3">
+                        <MDBCardText>Name</MDBCardText>
+                      </MDBCol>
+                      <MDBCol sm="9">
+                        <MDBCardText className="text-muted">
+                          {playerData.name}
+                        </MDBCardText>
+                      </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                      <MDBCol sm="3">
+                        <MDBCardText>Email</MDBCardText>
+                      </MDBCol>
+                      <MDBCol sm="9">
+                        <MDBCardText className="text-muted">
+                          {playerData.email}
+                        </MDBCardText>
+                      </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                      <MDBCol sm="3">
+                        <MDBCardText>Wins</MDBCardText>
+                      </MDBCol>
+                      <MDBCol sm="9">
+                        <MDBCardText className="text-muted">
+                          {playerData.wins}
+                        </MDBCardText>
+                      </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                      <MDBCol sm="3">
+                        <MDBCardText>Losses</MDBCardText>
+                      </MDBCol>
+                      <MDBCol sm="9">
+                        <MDBCardText className="text-muted">2</MDBCardText>
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </section>
+      );
   }
+

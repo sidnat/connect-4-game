@@ -14,7 +14,7 @@ export function useApplicationData() {
     } else {
       setIsLoggedIn(false);
     }
-  });
+  }, []);
 
   useEffect(() => {
     const leaderboardURL = `http://localhost:3003/leaderboard`;
@@ -24,30 +24,31 @@ export function useApplicationData() {
     });
   }, []);
 
-    const handleSubmit = (e, email, password) => {
-      e.preventDefault();
-      axios
-        .post("http://localhost:3003/login", {
-          email: email,
-          password: password,
-        })
-        .then((response) => {
-          console.log(response);
-          // Handle successful login
-          if (response.status === 200) {
-            Cookies.set("token", response.data, { expires: 7 });
-            localStorage.setItem("user", response.data.name);
-            localStorage.setItem("isLoggedIn", true);
-            console.log("it worked!");
-          }
-        })
-        .catch((error) => {
-          // Handle failed login
-          console.log(error);
-        });
-    };
+  const handleSubmit = (e, email, password) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3003/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        // Handle successful login
+        if (response.status === 200) {
+          Cookies.set("token", response.data, { expires: 7 });
+          localStorage.setItem("user", response.data.name);
+          localStorage.setItem("isLoggedIn", true);
+          console.log("it worked!");
+        }
+      })
+      .catch((error) => {
+        // Handle failed login
+        console.log(error);
+      });
+  };
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     Cookies.remove("token");
     localStorage.setItem("user", null)
     localStorage.setItem("isLoggedIn", false);

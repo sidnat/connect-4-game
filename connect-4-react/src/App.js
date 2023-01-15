@@ -23,7 +23,7 @@ function App() {
   const [password, setpassword] = useState("");
 
   const userName = localStorage.getItem("user");
-  
+
   return (
     <Stack>
       <Router>
@@ -60,7 +60,7 @@ function App() {
               <Navbar.Text className="login-form">
               Signed in as: {userName}
               <Form className="login-button">
-                <Button variant="warning" className="d-inline-block" onClick={handleLogout} type="submit">Logout</Button>
+                <Button variant="warning" className="d-inline-block" onClick={(e) => handleLogout(e)} type="submit">Logout</Button>
               </Form>
               </Navbar.Text>
             }
