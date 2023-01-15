@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export function useApplicationData() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    leaderboard: []
+  });
+  const [user, setUser] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const userStatus = localStorage.getItem("user");
   const currentUser = Cookies.get("token");
@@ -19,11 +22,18 @@ export function useApplicationData() {
   useEffect(() => {
     const leaderboardURL = `http://localhost:3003/leaderboard`;
 
-    axios.get(leaderboardURL).then((res) => {
-      setData(res.data);
-    });
-  }, []);
+    Promise.all([
+      axios.get(leaderboardURL)
+    ])
+      .then((all) => {
+        setData(prev => ({
+          ...prev,
+          leaderboard: all[0].data
+        }))
+      })
+    }, [])
 
+          
   const handleSubmit = (e, email, password) => {
     e.preventDefault();
     axios
@@ -51,14 +61,7 @@ export function useApplicationData() {
     e.preventDefault();
     Cookies.remove("token");
     localStorage.setItem("user", null)
-    localStorage.setItem("isLoggedIn", false);
-  };
-
-  return {
-    players: data,
-    handleSubmit,
-    isLoggedIn,
-    handleLogout,
-    userStatus,
-  };
+  }
+  
+  return { data, handleSubmit, user, isLoggedIn, handleLogout, userStatus };
 }
