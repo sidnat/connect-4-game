@@ -17,11 +17,13 @@ import { Button, Form } from 'react-bootstrap';
 
 function App() {
 
-  const { players, handleSubmit, user, isLoggedIn, handleLogout } = useApplicationData();
+  const { players, handleSubmit, isLoggedIn, handleLogout } = useApplicationData();
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
+  const userName = localStorage.getItem("user");
+  
   return (
     <Stack>
       <Router>
@@ -56,7 +58,7 @@ function App() {
             }
             {isLoggedIn &&
               <Navbar.Text className="login-form">
-              Signed in as: {user}
+              Signed in as: {userName}
               <Form className="login-button">
                 <Button variant="warning" className="d-inline-block" onClick={handleLogout} type="submit">Logout</Button>
               </Form>
