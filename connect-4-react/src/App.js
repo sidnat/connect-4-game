@@ -13,42 +13,14 @@ import { useState } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const {
-    players
-  } = useApplicationData();
+  const { players, handleSubmit, user, isLoggedIn, handleLogout } = useApplicationData();
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [user, setUser] = useState("")
- 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:3003/login', {
-      email: email,
-      password: password
-  })
-  .then(response => {
-    console.log(response)
-      // Handle successful login
-      if(response.status === 200){
-          setUser(response.data.name)
-          setIsLoggedIn(true);
-          console.log("it worked!")
-      }
-  })
-  .catch(error => {
-      // Handle failed login
-      console.log(error);
-  });
-};
 
   return (
     <Stack>
@@ -56,7 +28,6 @@ function App() {
 
         <Navbar bg="primary" variant="dark">
           <Container>
-          <Form className="login-form" onSubmit={handleSubmit}></Form>
             <div className="c4image">
               <Navbar.Brand href="/" className="navimage" ><img src="/images/connect4logo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
             </div>
@@ -69,7 +40,7 @@ function App() {
            </div>
         
             {!isLoggedIn &&
-              <Form className="login-form" onSubmit={handleSubmit}>
+              <Form className="login-form" onSubmit={(e) => handleSubmit(e, email, password)}>
                 <div className="input-text">
                   <Form.Group className="email-form" controlId="formBasicEmail">
                     <Form.Control size="sm" type="email" placeholder="Enter email" className="d-inline-block" style={{ width: '150px' }} onChange={(e) => setEmail(e.target.value)} />
@@ -87,7 +58,7 @@ function App() {
               <Navbar.Text className="login-form">
               Signed in as: {user}
               <Form className="login-button">
-                <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
+                <Button variant="warning" className="d-inline-block" onClick={handleLogout} type="submit">Logout</Button>
               </Form>
               </Navbar.Text>
             }
@@ -97,7 +68,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/game" element={<GamePage />}></Route>
-          <Route path="/profile/" element={<ProfilePage />}></Route>
+          <Route path="/profile/" element={<ProfilePage players={players} />}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={players} />}></Route>
         </Routes>
 
