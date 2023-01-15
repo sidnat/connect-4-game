@@ -60,7 +60,6 @@ app.post('/addnewgame', (req, res) => {
 });
  
 app.post('/login', jsonParser, async (req, res) => {
-  console.log(req.body)
   loginValidation(req.body.email, req.body.password)
     .then(response => {
       res.status(200).send(response);

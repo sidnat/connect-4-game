@@ -20,3 +20,8 @@
 .yellow {
   background-color: yellow;
 }
+
+.mouseOver:hover {
+  background-color: lightblue;
+}
+

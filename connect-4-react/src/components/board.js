@@ -3,23 +3,27 @@ import './board.css';
 import Alert from '@mui/material/Alert';
 import { Button } from '@mui/material';
 import { gameSizeX, gameSizeY } from './game';
+import {v4 as uuidv4 } from 'uuid'
 
 export function Connect4Board({ ctx, G, moves }) {
   const onClick = (x, y) => moves.clickCell(x, y);
 
   let winner = '';
+  let currentPlayer = ctx.currentPlayer;
 
   // displays end game message if game is won or ends in draw
   if (ctx.gameover) {
+    currentPlayer = null;
     winner =
       ctx.gameover.winner !== undefined ? (
         <div id="winner">
           <Alert
+            icon={false}
             variant="filled"
             severity="success"
             action={
               // change the href once we figure react router out
-              <Button href="/game" color="inherit" size="small">
+              <Button href={`/game/${uuidv4()}`} color="inherit" size="small">
                 START A NEW GAME
               </Button>
             }
@@ -30,11 +34,12 @@ export function Connect4Board({ ctx, G, moves }) {
       ) : (
         <div id="winner">
           <Alert
+            icon={false}
             variant="filled"
             severity="warning"
             action={
               // change the href once we figure react router out
-              <Button href="/game" color="inherit" size="small">
+              <Button href={`/game/${uuidv4()}`} color="inherit" size="small">
                 START A NEW GAME
               </Button>
             }
@@ -68,7 +73,7 @@ export function Connect4Board({ ctx, G, moves }) {
           {/* {G.cells[i][j]} will display player number as text in circle*/}
           {G.cells[i][j] === '1' && <div className="circle yellow" style={cellStyle}></div>}
           {/* if cell is empty, show white background and allow click */}
-          {G.cells[i][j] === null && <button className="circle white" style={cellStyle} onClick={() => onClick(i, j)} />}
+          {G.cells[i][j] === null && <button className="circle white mouseOver" style={cellStyle} onClick={() => onClick(i, j)} />}
         </td>
       );
     }
@@ -77,6 +82,11 @@ export function Connect4Board({ ctx, G, moves }) {
 
   return (
     <div>
+      {currentPlayer && 
+        <Alert className="center" severity="info">
+          Current Turn: <b>Player {ctx.currentPlayer}</b>
+        </Alert>
+      }
       <div>
         {winner}
       </div>

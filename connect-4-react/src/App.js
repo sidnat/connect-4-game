@@ -9,15 +9,24 @@ import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import {LinkContainer} from 'react-router-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
+import useLocalStorage from './hooks/useLocalStorage';
+import { saveOnLogin, retrieveUser, clearUser } from './utils/loginUtils';
+
+//Save user data to localstorage using Localstorage hook
+// Read the user from the gamepage (place loading client) from localstorage
+// save on login
+// clear on logout
 
 
 function App() {
-
+  const [user, setUser ] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const {
@@ -26,8 +35,13 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [user, setUser] = useState("")
+  // const [user, setUser] = useState("")
  
+  const [id, setID] = useState(Math.floor(Math.random()*2))
+
+  useEffect(() => {
+   console.log(id) 
+  }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +53,8 @@ function App() {
     console.log(response)
       // Handle successful login
       if(response.status === 200){
-          setUser(response.data.name)
+          saveOnLogin(response.data)
+          setUser(response.data)
           setIsLoggedIn(true);
           console.log("it worked!")
       }
@@ -49,6 +64,7 @@ function App() {
       console.log(error);
   });
 };
+
 
   return (
     <Stack>
@@ -62,7 +78,9 @@ function App() {
             </div>
             <div className="navcontainer">
             <nav className="ml-auto">
-              <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Connect4</Nav.Link>
+              <LinkContainer to={`/game/${uuidv4()}`} state={{ data: { userID: user.id, isLoggedIn }}}>
+              <Nav.Link className="text-white mx-2 d-inline-block" >Connect4</Nav.Link>
+              </LinkContainer>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
            </nav>
@@ -85,7 +103,7 @@ function App() {
             }
             {isLoggedIn &&
               <Navbar.Text className="login-form">
-              Signed in as: {user}
+              Signed in as: {user.name}
               <Form className="login-button">
                 <Button variant="warning" className="d-inline-block" onClick={() => setIsLoggedIn(false)} type="submit">Logout</Button>
               </Form>
@@ -96,7 +114,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
-          <Route path="/game" element={<GamePage />}></Route>
+          <Route path="/game/:matchid" element={<GamePage isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/profile/" element={<ProfilePage />}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={players} />}></Route>
         </Routes>

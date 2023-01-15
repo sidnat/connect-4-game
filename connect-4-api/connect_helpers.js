@@ -19,7 +19,6 @@ export const loginValidation = (email, password) => {
   return new Promise(function(resolve, reject) {
     pool.query(`SELECT id, name, email, password, wins FROM players WHERE email = '${email}'`, (error, results) => {
       let userObject = false;
-      console.log(results.rows)
       if (error) {
         reject(error);
       }
