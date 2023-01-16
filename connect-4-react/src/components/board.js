@@ -68,7 +68,7 @@ export function Connect4Board({ ctx, G, moves }) {
           {/* {G.cells[i][j]} will display player number as text in circle*/}
           {G.cells[i][j] === '1' && <div className="circle yellow" style={cellStyle}></div>}
           {/* if cell is empty, show white background and allow click */}
-          {G.cells[i][j] === null && <button className="circle white" style={cellStyle} onClick={() => onClick(i, j)} />}
+          {G.cells[i][j] === null && <button className="circle white mouseOver" style={cellStyle} onClick={() => onClick(i, j)} />}
         </td>
       );
     }
