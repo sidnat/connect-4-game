@@ -1,13 +1,12 @@
 import React from "react";
 import './landing-page.css';
 
-export default function LandingPage(props) {
-  // const { } = props;
+export default function LandingPage() {
 
   return (
     <div className="fullBody">
       <div className="hero">
-        <div className="mainimage" class="img-fluid">
+        <div className="mainimage">
           <div className="parent">
             <img className="image1" src="/images/connect4transparent.png" alt="Connect4" />
           </div>
