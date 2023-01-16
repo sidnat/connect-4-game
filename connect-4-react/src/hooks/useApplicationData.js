@@ -9,12 +9,12 @@ export function useApplicationData() {
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const userStatus = localStorage.getItem("user");
-  const currentUser = Cookies.get("token");
+  const [currentUser, setCurrentUser ] = useState(Cookies.get("token"))
   const playerID = localStorage.getItem('userId');
 
 
   useEffect(() => {
-    if (currentUser !== undefined) {
+    if (currentUser) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
@@ -43,7 +43,7 @@ export function useApplicationData() {
 
 
   const handleSubmit = (e, email, password) => {
-    // e.preventDefault();
+    e.preventDefault();
     axios
       .post("http://localhost:3003/login", {
         email: email,
@@ -52,9 +52,12 @@ export function useApplicationData() {
       .then((response) => {
         // Handle successful login
         if (response.status === 200) {
+          // saves a cookie
           Cookies.set("token", response.data, { expires: 7, secure: true });
+          // stores userID and userName in a local storage
           localStorage.setItem("userId", response.data.id);
           localStorage.setItem("userName", response.data.name);
+          // changes login State to true
           setIsLoggedIn(true);
           console.log("it worked!");
         }
@@ -65,10 +68,10 @@ export function useApplicationData() {
       });
   };
 
-  const handleLogout = (e) => {
-    // e.preventDefault();
+  const handleLogout = () => {
     Cookies.remove("token");
     localStorage.removeItem("userName", null)
+    setCurrentUser(null)
     localStorage.removeItem("userId", null)
   }
   

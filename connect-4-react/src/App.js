@@ -59,9 +59,7 @@ function App() {
             {isLoggedIn &&
               <Navbar.Text className="login-form">
               Signed in as: {userName}
-              <Form className="login-button">
-                <Button variant="warning" className="d-inline-block" onClick={(e) => handleLogout(e)} type="submit">Logout</Button>
-              </Form>
+                <Button variant="warning" className="logout-button" onClick={() => handleLogout()} type="button">Logout</Button>
               </Navbar.Text>
             }
           </Container>
