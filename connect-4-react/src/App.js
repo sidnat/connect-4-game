@@ -17,12 +17,12 @@ import { Button, Form } from 'react-bootstrap';
 
 function App() {
 
-  const { data, handleSubmit, user, isLoggedIn, handleLogout } = useApplicationData();
+  const { data, handleSubmit, isLoggedIn, handleLogout } = useApplicationData();
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
-  const userName = localStorage.getItem("user");
+  const userName = localStorage.getItem("userName");
 
   return (
     <Stack>
@@ -35,7 +35,7 @@ function App() {
             </div>
             <div className="navcontainer">
             <nav className="ml-auto">
-              <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Connect4</Nav.Link>
+              <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Start Game</Nav.Link>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
            </nav>
@@ -70,7 +70,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/game" element={<GamePage />}></Route>
-          <Route path="/profile/" element={<ProfilePage />}></Route>
+          <Route path="/profile/" element={<ProfilePage playerInfo={data.playerInfo} />}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={data.leaderboard} />}></Route>
         </Routes>
 
