@@ -8,13 +8,16 @@ export function Connect4Board({ ctx, G, moves }) {
   const onClick = (x, y) => moves.clickCell(x, y);
 
   let winner = '';
+  let currentPlayer = ctx.currentPlayer;
 
   // displays end game message if game is won or ends in draw
   if (ctx.gameover) {
+    currentPlayer = null;
     winner =
       ctx.gameover.winner !== undefined ? (
         <div id="winner">
           <Alert
+            icon={false}
             variant="filled"
             severity="success"
             action={
@@ -24,12 +27,13 @@ export function Connect4Board({ ctx, G, moves }) {
               </Button>
             }
           >
-            Congratulations! We have a Winner, Player: {ctx.gameover.winner}
+            Congratulations! We have a Winner: <b>Player {ctx.gameover.winner}</b>
           </Alert>
         </div>
       ) : (
         <div id="winner">
           <Alert
+            icon={false}
             variant="filled"
             severity="warning"
             action={
@@ -77,6 +81,11 @@ export function Connect4Board({ ctx, G, moves }) {
 
   return (
     <div>
+      {currentPlayer &&
+        <Alert className="center" severity="info">
+          Current Turn: <b>Player {ctx.currentPlayer}</b>
+        </Alert>
+      }
       <div>
         {winner}
       </div>
