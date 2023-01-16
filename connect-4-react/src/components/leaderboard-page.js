@@ -8,7 +8,6 @@ import {
   MDBBreadcrumb,
   MDBBreadcrumbItem,
   MDBTableHead,
-  MDBTableCell,
 } from "mdb-react-ui-kit";
 import "./leaderboard-page.css";
 
@@ -39,7 +38,7 @@ export default function LeaderboardPage(props) {
             borderColor="dark"
             style={{ width: "85%", margin: "auto" }}
           >
-            <MDBTableHead color="primary-color" textWhite>
+            <MDBTableHead color="primary-color">
               <tr>
                 <td>
                   <strong>#</strong>
