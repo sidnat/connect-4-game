@@ -9,7 +9,7 @@ import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
-import Transition from './components/Transition';
+import GameSetup from './components/game-setup';
 import { useState } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -37,7 +37,7 @@ function App() {
             </div>
             <div className="navcontainer">
             <nav className="ml-auto">
-              <Nav.Link className="text-white mx-2 d-inline-block" href="/game" >Start Game</Nav.Link>
+              <Nav.Link className="text-white mx-2 d-inline-block" href="/gamesetup/" >Start Game</Nav.Link>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
               <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
            </nav>
@@ -71,7 +71,7 @@ function App() {
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/game" element={<GamePage />}></Route>
           <Route path="/profile/" element={<ProfilePage playerInfo={data.playerInfo} />}></Route>
-          <Route path="/transition/" element={<Transition />}></Route>
+          <Route path="/gamesetup/" element={<GameSetup />}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={data.leaderboard} />}></Route>
         </Routes>
 
