@@ -57,8 +57,7 @@ export default function GameSetup() {
 
           <Col md={5}>
           <h3>Player 1's name:</h3>
-          <Form.Group className="playerOne ">
-            <Form.Control
+          <Form.Group className="playerOne">             <Form.Control
               size="sm"
               placeholder="Name of player 1"
               className="d-inline-block"
@@ -77,6 +76,7 @@ export default function GameSetup() {
               onChange={(e) => localStorage.setItem('playerTwo', e.target.value)}
             />
           </Form.Group>
+          {/* <br></br>
           <h5>Board width? (between 5 and 12)</h5>
           <Form.Group className="gameSizeX">
             <Form.Control
@@ -87,6 +87,7 @@ export default function GameSetup() {
               onChange={(e) => localStorage.setItem('gameSizeX', e.target.value)}
             />
           </Form.Group>
+          <br></br>
           <h5>Board Height? (between 5 and 12)</h5>
           <Form.Group className="gameSizeY">
             <Form.Control
@@ -96,7 +97,8 @@ export default function GameSetup() {
               style={{ width: "150px" }}
               onChange={(e) => localStorage.setItem('gameSizeY', e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
+          <br></br>
           {/* <h5>Click to set default board size</h5>
           <div className="defaultBoardSize">
             <Button variant="success" className="d-inline-block" type="submit" onClick={() => {
@@ -116,13 +118,9 @@ export default function GameSetup() {
               style={{ width: "150px" }}
               onChange={(e) => localStorage.setItem('winCondition', e.target.value)}
             />
-<<<<<<< HEAD
           </Form.Group>
-=======
-          </Form.Group> */}
 
           <br></br>
->>>>>>> d83e525 (Add css styling to forms for custom board and player page)
           <div className="defaultBoardSize">
             <Button variant="success" className="d-inline-block mx-2" type="submit" href="/game/" >Start Game</Button>
           </div>
