@@ -3,6 +3,10 @@ import { setBoardSize, findLowestCellByColumn, checkWinner, IsDraw } from '../ut
 //hard coded game board size
 export const gameSizeX = 7
 export const gameSizeY = 6
+if (gameSizeX && gameSizeY) {
+  export const gameSizeX = localStorage.getItem('gameSizeX')
+  export const gameSizeY = localStorage.getItem('gameSizeY')
+}  else 
 
 //Connect 4 board
 export const Connect4 = () => {

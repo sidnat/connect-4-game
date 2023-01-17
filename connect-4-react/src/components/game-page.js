@@ -9,8 +9,8 @@ import './game-page.css';
 
 export default function GamePage(props) {
   // const { gameSizeX, gameSizeY } = props;
-  const gameSizeX = localStorage.getItem('gameSizeX')
-  const gameSizeY = localStorage.getItem('gameSizeY')
+
+console.log(gameSizeX, gameSizeY)
 
   const Connect4Client = Client({
     game: Connect4(gameSizeX, gameSizeY),

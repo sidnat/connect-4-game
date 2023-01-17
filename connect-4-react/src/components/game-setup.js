@@ -58,7 +58,9 @@ export default function GameSetup() {
           </Button>
         </div>
 
-<Button variant="success" href="/game/" ></Button>
+        <div className="defaultBoardSize">
+        <Button variant="success" className="d-inline-block" type="submit" href="/game/" >Start Game</Button>
+        </div>
       {/* <Link className="text-black mx-2 d-inline-block" href="/game/">
         Start Game
       </Link> */}
