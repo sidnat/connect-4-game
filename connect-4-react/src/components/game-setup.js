@@ -20,7 +20,7 @@ export default function GameSetup() {
           <Form.Group className="gameSizeX">
             <Form.Control
               size="sm"
-              placeholder="board width"
+              placeholder="7"
               className="d-inline-block"
               style={{ width: "150px" }}
               onChange={(e) => localStorage.setItem('gameSizeX', e.target.value)}
@@ -32,14 +32,14 @@ export default function GameSetup() {
           <Form.Group className="gameSizeY">
             <Form.Control
               size="sm"
-              placeholder="board height"
+              placeholder="6"
               className="d-inline-block"
               style={{ width: "150px" }}
               onChange={(e) => localStorage.setItem('gameSizeY', e.target.value)}
             />
           </Form.Group>
           <br></br>
-          <h3>Click to set default board size</h3>
+         
           <div className="defaultBoardSize">
           <br></br>
             <Button variant="success" className="d-inline-block" type="submit" onClick={() => {
