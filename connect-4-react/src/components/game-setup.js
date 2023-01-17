@@ -9,8 +9,8 @@ export default function GameSetup() {
       <Stack>
         <div className="wordwrap">
         <h3>Welcome to Connect 4!</h3>
-        <h3>
-        For custom board size amd win conditions, please enter below.</h3><h3>Otherwise enjoy the game with default settings!</h3>
+        <h3>For custom board size/win conditions, enter below.</h3>
+        <h3>Otherwise enjoy the game with default settings!</h3>
         </div>
         <Form className="customGameBoard">
           <h5>Player 1's name:</h5>
