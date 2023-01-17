@@ -4,8 +4,13 @@ import { Connect4Board } from './board';
 import { Connect4 } from './game';
 import './game-page.css';
 
+
+// console.log("this is game sizes:", gameSizeX, gameSizeY)
+
 export default function GamePage(props) {
-  const { gameSizeX, gameSizeY } = props;
+  // const { gameSizeX, gameSizeY } = props;
+  const gameSizeX = localStorage.getItem('gameSizeX')
+  const gameSizeY = localStorage.getItem('gameSizeY')
 
   const Connect4Client = Client({
     game: Connect4(gameSizeX, gameSizeY),
