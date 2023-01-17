@@ -9,5 +9,6 @@
 
 #root {
   background-color: #eee;
-  height: 100vh;
+  height: 100%;
+  padding-bottom: 5em;
 }
