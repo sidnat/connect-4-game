@@ -10,7 +10,8 @@ import './game-page.css';
 export default function GamePage(props) {
   // const { gameSizeX, gameSizeY } = props;
 
-console.log(gameSizeX, gameSizeY)
+  const gameSizeX = localStorage.getItem('gameSizeX');
+  const gameSizeY = localStorage.getItem('gameSizeY');
 
   const Connect4Client = Client({
     game: Connect4(gameSizeX, gameSizeY),
@@ -21,9 +22,9 @@ console.log(gameSizeX, gameSizeY)
     },
   });
 
-  return (    
+  return (
     <div className="row topspace">
-      <Connect4Client/>
+      <Connect4Client />
     </div>
   );
 }

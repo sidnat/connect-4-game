@@ -2,17 +2,27 @@ import React from 'react';
 import './board.css';
 import Alert from '@mui/material/Alert';
 import { Button } from '@mui/material';
-import { gameSizeX, gameSizeY } from './game';
 
 export function Connect4Board({ ctx, G, moves }) {
-  const onClick = (x, y) => moves.clickCell(x, y);
-
   let winner = '';
-  let currentPlayer = ctx.currentPlayer;
+  let currentPlayer;
+  currentPlayer = ctx.currentPlayer;
+  let gameOver = false;
+
+  if (ctx.currentPlayer === '0') {
+    currentPlayer = localStorage.getItem('playerOne')
+  } else if (ctx.currentPlayer === '1') {
+    currentPlayer = localStorage.getItem('playerTwo')
+  }
+
+  const gameSizeX = localStorage.getItem('gameSizeX')
+  const gameSizeY = localStorage.getItem('gameSizeY')
+
+  const onClick = (x, y) => moves.clickCell(x, y);
 
   // displays end game message if game is won or ends in draw
   if (ctx.gameover) {
-    currentPlayer = null;
+    gameOver = true;
     winner =
       ctx.gameover.winner !== undefined ? (
         <div id="winner">
@@ -23,11 +33,11 @@ export function Connect4Board({ ctx, G, moves }) {
             action={
               // change the href once we figure react router out
               <Button href="/game" color="inherit" size="small">
-                START A NEW GAME
+                REMATCH?
               </Button>
             }
           >
-            Congratulations! We have a Winner: <b>Player {ctx.gameover.winner}</b>
+            Congratulations! We have a Winner! <b>Player: {currentPlayer}</b>
           </Alert>
         </div>
       ) : (
@@ -39,7 +49,7 @@ export function Connect4Board({ ctx, G, moves }) {
             action={
               // change the href once we figure react router out
               <Button href="/game" color="inherit" size="small">
-                START A NEW GAME
+                REMATCH?
               </Button>
             }
           >
@@ -81,9 +91,9 @@ export function Connect4Board({ ctx, G, moves }) {
 
   return (
     <div>
-      {currentPlayer &&
+      {!gameOver &&
         <Alert className="center" severity="info">
-          Current Turn: <b>Player {ctx.currentPlayer}</b>
+          Current players turn: <b>{currentPlayer}</b>
         </Alert>
       }
       <div>
