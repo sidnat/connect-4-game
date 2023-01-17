@@ -4,6 +4,7 @@ import './landing-page.css';
 export default function LandingPage() {
 
   return (
+    //clean up nested divs
     <div className="fullBody">
       <div className="hero">
         <div className="mainimage">

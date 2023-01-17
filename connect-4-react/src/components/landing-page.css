@@ -1,3 +1,4 @@
+/* clean up nested css divs, only need one */
 .hero {
   display: flex;
   justify-content: center;

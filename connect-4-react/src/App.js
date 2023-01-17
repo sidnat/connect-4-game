@@ -14,6 +14,7 @@ import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 
+// thorough cleaning of syntax, formatting required
 
 function App() {
 

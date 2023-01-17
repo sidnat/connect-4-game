@@ -59,6 +59,8 @@ export function useApplicationData() {
           localStorage.setItem("userName", response.data.name);
           // changes login State to true
           setIsLoggedIn(true);
+
+          //remove console.log
           console.log("it worked!");
         }
       })

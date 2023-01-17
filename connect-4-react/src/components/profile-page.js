@@ -17,7 +17,10 @@ export default function ProfilePage(props) {
 
   if (props.playerInfo.length !== 0) {
     playerData = props.playerInfo[0];
+
+    // remove console.log
     console.log(playerData);
+    
     return (
       <section style={{ backgroundColor: "#eee", height: "100vh" }}>
         <MDBContainer className="py-5">
