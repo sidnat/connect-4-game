@@ -116,13 +116,7 @@ export default function GameSetup() {
               style={{ width: "150px" }}
               onChange={(e) => localStorage.setItem('winCondition', e.target.value)}
             />
-<<<<<<< HEAD
           </Form.Group>
-=======
-          </Form.Group> */}
-
-          <br></br>
->>>>>>> d83e525 (Add css styling to forms for custom board and player page)
           <div className="defaultBoardSize">
             <Button variant="success" className="d-inline-block mx-2" type="submit" href="/game/" >Start Game</Button>
           </div>
