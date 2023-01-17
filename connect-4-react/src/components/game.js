@@ -5,7 +5,8 @@ export const gameSizeX = 7
 export const gameSizeY = 6
 
 //Connect 4 board
-export const Connect4 = {
+export const Connect4 = () => {
+  const game = {
   setup: () => ({ cells: setBoardSize(gameSizeX, gameSizeY) }),
 
   turn: {
@@ -30,4 +31,25 @@ export const Connect4 = {
       return { draw: true };
     }
   },
+
+//   ai: {
+//     enumerate: (G, ctx) => {
+//       let moves = [];
+
+//       for (let i = 0; i < gameSizeY; i++) {
+//         for (let j = 0; j < gameSizeX; j++) {
+//           if (G.cells[i][j] === null) {
+//             moves.push({ move: 'clickCell', args: [i][j] });
+//           }
+//         }
+//       }
+// // console.log moves
+// // see args
+// // check if ai starts from debug panel
+//       return moves;
+//     },
+//   },
+  }
+  
+  return game
 };
