@@ -4,11 +4,13 @@ import { setBoardSize, findLowestCellByColumn, checkWinner, IsDraw } from '../ut
 export const Connect4 = () => {
   const gameSizeX = localStorage.getItem('gameSizeX');
   const gameSizeY = localStorage.getItem('gameSizeY');
+  const winCondition = localStorage.getItem('winCondition')
 
   const game = {
     setup: () => ({ cells: setBoardSize(gameSizeX, gameSizeY) }),
 
     turn: {
+      
       minMoves: 1,
       maxMoves: 1,
     },
@@ -23,7 +25,7 @@ export const Connect4 = () => {
 
     // ends the game if checkWinner or IsDraw function returns true
     endIf: ({ G, ctx }) => {
-      if (checkWinner(G.cells, gameSizeX, gameSizeY)) {
+      if (checkWinner(G.cells, gameSizeX, gameSizeY, winCondition)) {
         return { winner: ctx.currentPlayer };
       }
       if (IsDraw(G.cells)) {

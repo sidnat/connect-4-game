@@ -6,3 +6,7 @@
   margin-top: 50px;
   background-color: #eee;
 }
+
+.wordwrap{
+  word-wrap:break-word;
+}

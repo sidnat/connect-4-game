@@ -3,7 +3,6 @@ export const setBoardSize = (x, y) => {
   let gameSizeX;
   let gameSizeY;
 
-  //minimum board size 7x6
   //x coords 0 to x left to right, see line 31
   if (x > 5 && x < 12) {
     gameSizeX = x;
@@ -17,6 +16,7 @@ export const setBoardSize = (x, y) => {
   } else {
     gameSizeY = 6;
   }
+
   //custom board creator
   for (let i = 0; i < gameSizeY; i++) {
     const temp = [];
@@ -46,66 +46,105 @@ export function findLowestCellByColumn(cells, column) {
   }
 }
 
-export function checkWinner(board, columns, rows) {
-
+const horizontalCheck = (board, columns, rows, connectX) => {
   // horizontal win check
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < columns - 3; j++) {
+  for (let i = rows - 1; i >= 0; i--) {
+    for (let j = 0; j < columns - (connectX - 1); j++) {
       if (board[i][j] !== null) {
-
-        //check player ID in a horizontal line to determine if 4 exist in a row
-        const horizontalCheck = board[i][j] === board[i][j + 1] && board[i][j + 1] === board[i][j + 2] && board[i][j + 2] === board[i][j + 3];
-
-        if (horizontalCheck) {
-          return true;
+        // check player ID in a horizontal line to determine if "connectX" exist in a row
+        for (let k = 0; k < connectX - 1; k++) {
+          if (board[i][j + k] !== board[i][j + (k + 1)]) {
+            break;
+          }
+          // at index k = connectX - 2, all paired segments should have been verified, for connect 5, if k reaches index 3 then we have a successful win check
+          if (k === connectX - 2) {
+            return true;
+          }
         }
       }
     }
   }
+  return false;
+};
 
-  // vertical win check
+const verticalCheck = (board, columns, rows, connectX) => {
   for (let i = 0; i < columns; i++) {
-    for (let j = 0; j < rows - 3; j++) {
+    for (let j = rows - 1; j >= rows - (connectX - 1); j--) {
       if (board[j][i] !== null) {
 
-        //check player ID in a vertical line to determine if 4 exist in a row
-        const verticalCheck = board[j][i] === board[j + 1][i] && board[j + 1][i] === board[j + 2][i] && board[j + 2][i] === board[j + 3][i];
-
-        if (verticalCheck) {
-          return true;
+        // check player ID in a vertical line to determine if "connectX" exist in a row
+        for (let k = 0; k < connectX - 1; k++) {
+          if (board[j - k][i] !== board[j - (k + 1)][i]) {
+            break;
+          }
+          // at index k = connectX - 2, all connectX segments should have been verified, for connect 5, if k reaches index 3 then we have a successful win check
+          if (k === connectX - 2) {
+            return true;
+          }
         }
       }
     }
   }
+  return false;
+};
 
+const diagonalCheck = (board, columns, rows, connectX) => {
   // diagonal win check (bottom left to top right)
-  for (let i = 3; i < rows; i++) {
-    for (let j = 0; j < columns - 3; j++) {
+  for (let i = connectX - 1; i < rows; i++) {
+    for (let j = 0; j < columns - (connectX - 1); j++) {
       if (board[i][j] !== null) {
-
         //check player ID in a diagonal bottom left to top right line to determine if 4 exist in a row
-        const diagonalCheck = board[i][j] === board[i - 1][j + 1] && board[i - 1][j + 1] === board[i - 2][j + 2] && board[i - 2][j + 2] === board[i - 3][j + 3];
-
-        if (diagonalCheck) {
-          return true;
+        for (let k = 0; k < connectX - 1; k++) {
+          if (board[i - k][j + k] !== board[i - (k + 1)][j + (k + 1)]) {
+            break;
+          }
+          // at index k = connectX - 2, all connectX segments should have been verified, for connect 5, if k reaches index 3 then we have a successful win check
+          if (k === connectX - 2) {
+            return true;
+          }
         }
       }
     }
   }
+  return false;
+};
 
+const antiDiagonalCheck = (board, columns, rows, connectX) => {
   // anti diagonal win check (top left to bottom right)
-  for (let i = 0; i < rows - 3; i++) {
-    for (let j = 0; j < columns - 3; j++) {
+  for (let i = 0; i < rows - (connectX - 1); i++) {
+    for (let j = 0; j < columns - (connectX - 1); j++) {
       if (board[i][j] !== null) {
-
         //check player ID in a reverse diagonal top left to bottom right line to determine if 4 exist in a row
-        const antiDiagonalCheck = board[i][j] === board[i + 1][j + 1] && board[i + 1][j + 1] === board[i + 2][j + 2] && board[i + 2][j + 2] === board[i + 3][j + 3];
-
-        if (antiDiagonalCheck) {
-          return true;
+        for (let k = 0; k < connectX - 1; k++) {
+          if (board[i + k][j + k] !== board[i + (k + 1)][j + (k + 1)]) {
+            break;
+          }
+          // at index k = connectX - 2, all connectX segments should have been verified, for connect 5, if k reaches index 3 then we have a successful win check
+          if (k === connectX - 2) {
+            return true;
+          }
         }
       }
     }
+  }
+  return false;
+};
+
+export function checkWinner(board, columns, rows, winCondition) {
+  //add wincondition parameters so you cant have connect 9 on a 5x5 board
+  // do it based on game board size, if winCondition is 
+  //minimum board size 7x6
+
+  let connectX;
+
+  if (winCondition > 4 && winCondition < 9) {
+    connectX = winCondition;
+  } else {
+    connectX = 4;
+  }
+
+  if (horizontalCheck(board, columns, rows, connectX) || verticalCheck(board, columns, rows, connectX) || diagonalCheck(board, columns, rows, connectX) || antiDiagonalCheck(board, columns, rows, connectX)) {
+    return true;
   }
 }
 
@@ -118,7 +157,5 @@ export function IsDraw(cells) {
       }
     }
   }
-
   return true;
 }
-

@@ -67,7 +67,7 @@ export function Connect4Board({ ctx, G, moves }) {
     textAlign: 'center',
   };
 
-
+  // need to change "0" "1" if we get user data working to increment win count
   let tbody = [];
   for (let i = 0; i < gameSizeY; i++) {
     let cells = [];
