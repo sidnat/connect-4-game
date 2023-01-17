@@ -9,6 +9,7 @@ import LandingPage from './components/landing-page';
 import GamePage from './components/game-page';
 import ProfilePage from './components/profile-page';
 import LeaderboardPage from './components/leaderboard-page';
+import Transition from './components/Transition';
 import { useState } from 'react';
 import { useApplicationData } from './hooks/useApplicationData';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -70,6 +71,7 @@ function App() {
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/game" element={<GamePage />}></Route>
           <Route path="/profile/" element={<ProfilePage playerInfo={data.playerInfo} />}></Route>
+          <Route path="/transition/" element={<Transition />}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={data.leaderboard} />}></Route>
         </Routes>
 
