@@ -1,12 +1,25 @@
 .gameSetup {
   margin: auto;
+  border: rgb(0, 0, 0);
+
 }
 
 .topspace {
   margin-top: 50px;
   background-color: #eee;
+  border: rgb(0, 0, 0);
 }
 
-.wordwrap{
-  word-wrap:break-word;
+.flexcontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customGameBoard {
+  width:150%;
+  margin-right:500 px;
+}
+
+.formLeft {
+  margin-left: -50px; /* or any other value to adjust the position */
 }
