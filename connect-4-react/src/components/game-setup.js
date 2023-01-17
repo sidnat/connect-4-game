@@ -42,12 +42,6 @@ export default function GameSetup() {
          
           <div className="defaultBoardSize">
           <br></br>
-            <Button variant="success" className="d-inline-block" type="submit" onClick={() => {
-              localStorage.setItem('gameSizeX', 7);
-              localStorage.setItem('gameSizeY', 6);
-            }}>
-              Default Board Size 6x7
-            </Button>
             </div>
           
             </Col>
@@ -109,7 +103,7 @@ export default function GameSetup() {
             </Button>
           </div> */}
 
-          <h5>Connect "X" win condition (Connect 5, 6, 9!?)</h5>
+          <h3>Connect "X" win condition (Connect 5, 6, 9!?)</h3>
           <Form.Group className="connectCondition">
             <Form.Control
               size="sm"
