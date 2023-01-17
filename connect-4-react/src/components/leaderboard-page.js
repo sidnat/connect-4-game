@@ -53,9 +53,9 @@ export default function LeaderboardPage(props) {
 
                       <MDBTableBody>
                         {players.map((player, index) => (
-                          <tr key={player.id}>
+                          <tr key={player.id} className={player.name === localStorage.getItem("userName") ? "bold-name" : ""}>
                             <td>{index + 1}</td>
-                            <td>{player.name}</td>
+                            <td >{player.name}</td>
                             <td>{player.wins} wins</td>
                           </tr>
                         ))}
