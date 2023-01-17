@@ -8,6 +8,8 @@ import {
   MDBBreadcrumb,
   MDBBreadcrumbItem,
   MDBTableHead,
+  MDBCardBody,
+  MDBCard,
 } from "mdb-react-ui-kit";
 import "./leaderboard-page.css";
 
@@ -28,41 +30,43 @@ export default function LeaderboardPage(props) {
               </MDBBreadcrumb>
             </MDBCol>
           </MDBRow>
+
+          <div className="leaderboard-container">
+            <MDBRow>
+              <MDBCol>
+                <MDBCard className="mb-4">
+                  <MDBCardBody className="text-center">
+                    <MDBTable>
+                      <MDBTableHead color="primary-color">
+                        <tr>
+                          <td>
+                            <strong>#</strong>
+                          </td>
+                          <td>
+                            <strong>Name</strong>
+                          </td>
+                          <td>
+                            <strong>Wins</strong>
+                          </td>
+                        </tr>
+                      </MDBTableHead>
+
+                      <MDBTableBody>
+                        {players.map((player, index) => (
+                          <tr key={player.id}>
+                            <td>{index + 1}</td>
+                            <td>{player.name}</td>
+                            <td>{player.wins} wins</td>
+                          </tr>
+                        ))}
+                      </MDBTableBody>
+                    </MDBTable>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </div>
         </MDBContainer>
-
-        <div className="leaderboard-container">
-          <h1 className="leaderboard-title">Leaderboard</h1>
-          <MDBTable
-            striped
-            bordered
-            borderColor="dark"
-            style={{ width: "85%", margin: "auto" }}
-          >
-            <MDBTableHead color="primary-color">
-              <tr>
-                <td>
-                  <strong>#</strong>
-                </td>
-                <td>
-                  <strong>Name</strong>
-                </td>
-                <td>
-                  <strong>Wins</strong>
-                </td>
-              </tr>
-            </MDBTableHead>
-
-            <MDBTableBody>
-              {players.map((player, index) => (
-                <tr key={player.id}>
-                  <td>{index + 1}</td>
-                  <td>{player.name}</td>
-                  <td>{player.wins} wins</td>
-                </tr>
-              ))}
-            </MDBTableBody>
-          </MDBTable>
-        </div>
       </section>
     </div>
   );
