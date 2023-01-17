@@ -40,7 +40,7 @@ export default function LeaderboardPage(props) {
                       <MDBTableHead color="primary-color">
                         <tr>
                           <td>
-                            <strong>#</strong>
+                            <strong>Ranking</strong>
                           </td>
                           <td>
                             <strong>Name</strong>
