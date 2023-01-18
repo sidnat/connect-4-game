@@ -69,6 +69,15 @@ app.post('/login', jsonParser, async (req, res) => {
     });
 });
 
+app.post('/addWin/', jsonParser, async (req, res) => {
+  addPlayerWin(req.body.userID)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
 
 // delete logic
 // app.delete('/merchants/:id', (req, res) => {

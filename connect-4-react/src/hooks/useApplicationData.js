@@ -77,5 +77,11 @@ export function useApplicationData() {
     localStorage.removeItem("userId", null)
   }
   
-  return { data, handleSubmit, isLoggedIn, handleLogout, userStatus };
+  const addWinToDB = (userID) => {
+    axios.post(`http://localhost:3003/addWin/`, {
+      userID: userID
+    }) 
+  } 
+
+  return { data, handleSubmit, isLoggedIn, handleLogout, userStatus, addWinToDB };
 }
