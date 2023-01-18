@@ -41,7 +41,7 @@ export default function GameSetup(props) {
               <Form className="customGameBoard formLeft">
                 <Row>
                   <Col md={6}>
-                    <h5>Board width? (5 - 12) </h5>
+                    <h5>Board width? (5 - 16) </h5>
                     <Form.Group className="gameSizeX">
                       <Form.Control
                         size="sm"
@@ -51,9 +51,12 @@ export default function GameSetup(props) {
                         onChange={(e) => {
                           let gameSizeX = e.target.value;
 
-                          // extraneous value limitation, if user enters 99, set default x board size
-                          if (gameSizeX < 5 || gameSizeX > 12) {
-                            gameSizeX = 7;
+                          // extraneous value limitation
+                          if (gameSizeX < 5) {
+                            gameSizeX = 5;
+                          }
+                          if (gameSizeX > 16) {
+                            gameSizeX = 16;
                           }
 
                           localStorage.setItem('gameSizeX', gameSizeX);
@@ -71,9 +74,12 @@ export default function GameSetup(props) {
                         onChange={(e) => {
                           let gameSizeY = e.target.value;
 
-                          // extraneous value limitation, if user enters 99, set default y board size
-                          if (gameSizeY < 5 || gameSizeY > 12) {
-                            gameSizeY = 7;
+                          // extraneous value limitation
+                          if (gameSizeY < 5) {
+                            gameSizeY = 5;
+                          }
+                          if (gameSizeY > 12) {
+                            gameSizeY = 12
                           }
 
                           localStorage.setItem('gameSizeY', gameSizeY);
@@ -83,7 +89,7 @@ export default function GameSetup(props) {
                     <br></br>
                     <div className="defaultBoardSize">
                     </div>
-                    <h5>*Connect "X" win condition* (5 - 9)</h5>
+                    <h5>*Connect "X" win condition* (4 - 11)</h5>
                     <Form.Group className="connectCondition">
                       <Form.Control
                         size="sm"
@@ -94,8 +100,11 @@ export default function GameSetup(props) {
                           let winCondition = e.target.value;
 
                           // extraneous value limitation, if user enters 99, set default win condition
-                          if (winCondition < 4 || winCondition > 9) {
+                          if (winCondition < 4) {
                             winCondition = 4;
+                          }
+                          if (winCondition > 11) {
+                            winCondition = 11
                           }
 
                           localStorage.setItem('winCondition', winCondition);
