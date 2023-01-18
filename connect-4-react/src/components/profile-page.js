@@ -120,7 +120,7 @@ export default function ProfilePage(props) {
             <MDBCol>
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
-                  <p className="text-muted mb-1"><strong>Please Create User Profile</strong></p>
+                  <p className="text-muted mb-1"><strong>Please Login or Create User Profile</strong></p>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
