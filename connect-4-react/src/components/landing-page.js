@@ -24,11 +24,11 @@ export default function LandingPage() {
  <div className="hero">
         <div className="mainimage">
           <div className="parent">
-            {/* <img
+            <img
               className="image1"
               src="/images/connect4transparent.png"
               alt="Connect4"
-            /> */}
+            />
           </div>
         </div>
       </div>
