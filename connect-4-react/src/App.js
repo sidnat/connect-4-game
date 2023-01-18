@@ -31,14 +31,7 @@ function App() {
             </div>
             <div className="navcontainer">
               <nav className="ml-auto">
-                <Nav.Link className="text-white mx-2 d-inline-block" href="/gamesetup/" onClick={() => {
-                  //users name
-                  localStorage.setItem('playerOne', '1');
-                  localStorage.setItem('playerTwo', '2');
-                  localStorage.setItem('gameSizeX', 7);
-                  localStorage.setItem('gameSizeY', 6);
-                  localStorage.setItem('winCondition', 4);
-                }}>New Game</Nav.Link>
+                <Nav.Link className="text-white mx-2 d-inline-block" href="/gamesetup/">New Game</Nav.Link>
                 <Nav.Link className="text-white mx-2 d-inline-block" href="/profile/" >Profile</Nav.Link>
                 <Nav.Link className="text-white mx-2 d-inline-block" href="/leaderboard/" >Leaderboard</Nav.Link>
               </nav>
@@ -70,9 +63,9 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
-          <Route path="/game" element={<GamePage />}></Route>
+          <Route path="/game" element={<GamePage playerInfo={data.playerInfo}/>}></Route>
           <Route path="/profile/" element={<ProfilePage playerInfo={data.playerInfo} />}></Route>
-          <Route path="/gamesetup/" element={<GameSetup />}></Route>
+          <Route path="/gamesetup/" element={<GameSetup playerInfo={data.playerInfo}/>}></Route>
           <Route path="/leaderboard/" element={<LeaderboardPage players={data.leaderboard} />}></Route>
         </Routes>
       </Router>
