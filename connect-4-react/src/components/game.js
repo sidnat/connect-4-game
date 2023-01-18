@@ -2,10 +2,7 @@ import { setBoardSize, findLowestCellByColumn, checkWinner, IsDraw } from '../ut
 import { useApplicationData } from '../hooks/useApplicationData';
 
 //Connect 4 board
-export const Connect4 = () => {
-  const gameSizeX = localStorage.getItem('gameSizeX');
-  const gameSizeY = localStorage.getItem('gameSizeY');
-  const winCondition = localStorage.getItem('winCondition')
+export const Connect4 = (gameSizeX, gameSizeY, winCondition) => {
   const userID = localStorage.getItem('userId')
   const { addWinToDB } = useApplicationData();
 
@@ -38,6 +35,7 @@ export const Connect4 = () => {
       }
     },
 
+    // try and implement ai bot in future, does not work with online multiplayer according to current boardgame.io documentation
     //   ai: {
     //     enumerate: (G, ctx) => {
     //       let moves = [];
