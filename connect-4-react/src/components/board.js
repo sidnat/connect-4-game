@@ -5,25 +5,27 @@ import { Button } from '@mui/material';
 
 export function Connect4Board({ ctx, G, moves }) {
   let winner = '';
-  let currentPlayer;
-  currentPlayer = ctx.currentPlayer;
+  let currentPlayer = ctx.currentPlayer;
   let gameOver = false;
+  const gameSizeX = localStorage.getItem('gameSizeX');
+  const gameSizeY = localStorage.getItem('gameSizeY');
+  const winCondition = localStorage.getItem('winCondition');
 
+  // changes current players name for info banner based on turn
   if (ctx.currentPlayer === '0') {
-    currentPlayer = localStorage.getItem('playerOne')
+    currentPlayer = localStorage.getItem('playerOne');
   } else if (ctx.currentPlayer === '1') {
-    currentPlayer = localStorage.getItem('playerTwo')
+    currentPlayer = localStorage.getItem('playerTwo');
   }
-
-  const gameSizeX = localStorage.getItem('gameSizeX')
-  const gameSizeY = localStorage.getItem('gameSizeY')
 
   const onClick = (x, y) => moves.clickCell(x, y);
 
   // displays end game message if game is won or ends in draw
   if (ctx.gameover) {
+    // when gameOver is true, player turn and win condition banner is removed
     gameOver = true;
     winner =
+      // show winner banner
       ctx.gameover.winner !== undefined ? (
         <div id="winner">
           <Alert
@@ -31,7 +33,6 @@ export function Connect4Board({ ctx, G, moves }) {
             variant="filled"
             severity="success"
             action={
-              // change the href once we figure react router out
               <Button href="/game" color="inherit" size="small">
                 REMATCH?
               </Button>
@@ -41,13 +42,13 @@ export function Connect4Board({ ctx, G, moves }) {
           </Alert>
         </div>
       ) : (
+        // show draw game banner
         <div id="winner">
           <Alert
             icon={false}
             variant="filled"
             severity="warning"
             action={
-              // change the href once we figure react router out
               <Button href="/game" color="inherit" size="small">
                 REMATCH?
               </Button>
@@ -67,7 +68,6 @@ export function Connect4Board({ ctx, G, moves }) {
     textAlign: 'center',
   };
 
-  // need to change "0" "1" if we get user data working to increment win count
   let tbody = [];
   for (let i = 0; i < gameSizeY; i++) {
     let cells = [];
@@ -91,14 +91,21 @@ export function Connect4Board({ ctx, G, moves }) {
 
   return (
     <div>
+      {/* game information banner */}
       {!gameOver &&
-        <Alert className="center" severity="info">
-          Current players turn: <b>{currentPlayer}</b>
+        <Alert className="center" severity="info" action={
+          <div>
+            Connect X: "<b>{winCondition}</b>"
+          </div>}
+        >
+          Current players turn: "<b>{currentPlayer}</b>"
         </Alert>
       }
+      {/* win/draw game banner */}
       <div>
         {winner}
       </div>
+      {/* game board */}
       <div className="border">
         <table id="board">
           <tbody>{tbody}</tbody>
