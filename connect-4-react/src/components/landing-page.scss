@@ -33,9 +33,9 @@ body {
 .content {
   display:flex;
   justify-content: center;
-  position: absolute;
-  top: 13%;
-  left: 31%;
+  position: relative;
+  top: 7%;
+  // right: 2%;
   // transform: translate(-50%, -50%);
   // height: 1600px;
   overflow: hidden;
@@ -60,7 +60,7 @@ body {
 
     &__list {
       margin-top: 1;
-      margin-left: 2.3em;
+      margin-left: 3em;
       padding-left: 6em;
       text-align: right;
       list-style: none;
