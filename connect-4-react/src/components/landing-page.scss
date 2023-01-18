@@ -15,7 +15,7 @@
 
 .image1 {
   position: relative;
-  padding-top: 6em;
+  padding-top: 1em;
 }
 
 .fullBody {
@@ -26,19 +26,19 @@
 body {
   width: 100%;
   height: 100%;
-  position: fixed;
-  background-color: #34495e;
+  position: relative;
+  background-color: #eee;
 }
 
 .content {
   display:flex;
   justify-content: center;
   position: relative;
-  top: 7%;
+  top: 4%;
   // right: 2%;
   // transform: translate(-50%, -50%);
   // height: 1600px;
-  overflow: hidden;
+  // overflow: hidden;
 
   font-family: 'Lato', sans-serif;
   font-size: 35px;
@@ -60,7 +60,7 @@ body {
 
     &__list {
       margin-top: 1;
-      margin-left: 3em;
+      margin-left: 2.7em;
       padding-left: 6em;
       text-align: right;
       list-style: none;
