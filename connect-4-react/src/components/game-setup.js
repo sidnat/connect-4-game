@@ -43,7 +43,16 @@ export default function GameSetup() {
           <div className="defaultBoardSize">
           <br></br>
             </div>
-          
+            <h3>Connect "X" win condition (Connect 5, 6, 9!?)</h3>
+          <Form.Group className="connectCondition">
+            <Form.Control
+              size="sm"
+              placeholder="4"
+              className="d-inline-block"
+              style={{ width: "150px" }}
+              onChange={(e) => localStorage.setItem('winCondition', e.target.value)}
+            />
+          </Form.Group>
             </Col>
            
           <br></br>
@@ -103,16 +112,7 @@ export default function GameSetup() {
             </Button>
           </div> */}
 
-          <h3>Connect "X" win condition (Connect 5, 6, 9!?)</h3>
-          <Form.Group className="connectCondition">
-            <Form.Control
-              size="sm"
-              placeholder="4"
-              className="d-inline-block"
-              style={{ width: "150px" }}
-              onChange={(e) => localStorage.setItem('winCondition', e.target.value)}
-            />
-          </Form.Group>
+          
 
           <br></br>
           <div className="defaultBoardSize">
