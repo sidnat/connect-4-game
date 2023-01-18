@@ -27,7 +27,7 @@ function App() {
         <Navbar bg="primary" variant="dark">
           <Container>
             <div className="c4image">
-              <Navbar.Brand href="/" className="navimage" ><img src="/images/connect4logo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
+              <Navbar.Brand href="/" className="navimage" ><img src="/images/connectXlogo75px.png" alt="logo" className="img-responsive" /></Navbar.Brand>
             </div>
             <div className="navcontainer">
               <nav className="ml-auto">
