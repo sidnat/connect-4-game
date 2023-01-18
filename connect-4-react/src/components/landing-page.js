@@ -8,16 +8,16 @@ export default function LandingPage() {
     
     <div className="fullBody">
 
-<div class="content">
-  <div class="content__container">
-    <p class="content__container__text">
+<div className="content">
+  <div className="content__container">
+    <p className="content__container__text">
       Let's Play Connect 
     </p>
-    <ul class="content__container__list">
-      <li class="content__container__list__item">4</li>
-      <li class="content__container__list__item">5</li>
-      <li class="content__container__list__item">7</li>
-      <li class="content__container__list__item">9</li>
+    <ul className="content__container__list">
+      <li className="content__container__list__item">4</li>
+      <li className="content__container__list__item">5</li>
+      <li className="content__container__list__item">7</li>
+      <li className="content__container__list__item">9</li>
     </ul>
   </div>
 </div>     
