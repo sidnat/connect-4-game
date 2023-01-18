@@ -57,6 +57,14 @@ export function useApplicationData() {
           // stores userID and userName in a local storage
           localStorage.setItem("userId", response.data.id);
           localStorage.setItem("userName", response.data.name);
+
+          // // store default game conditions upon login to solve bug. when user not logged in, goes to /game route, and logs in without completing game setup page
+          localStorage.setItem('playerOne', response.data.name);
+          localStorage.setItem('playerTwo', '2');
+          localStorage.setItem('gameSizeX', 7);
+          localStorage.setItem('gameSizeY', 6);
+          localStorage.setItem('winCondition', 4);
+
           // changes login State to true
           setIsLoggedIn(true);
 
