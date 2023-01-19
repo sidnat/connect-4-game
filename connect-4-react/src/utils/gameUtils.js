@@ -41,7 +41,6 @@ const horizontalCheck = (board, columns, rows, connectX) => {
         // check player ID in a horizontal line to determine if "connectX" exist in a row
         for (let k = 0; k < connectX - 1; k++) {
           //checking if two consecutive pieces are equal
-
           if (board[i][j + k] !== board[i][j + (k + 1)]) {
             break;
           }

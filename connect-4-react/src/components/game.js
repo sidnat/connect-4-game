@@ -3,7 +3,7 @@ import { useApplicationData } from '../hooks/useApplicationData';
 
 //Connect 4 board
 export const Connect4 = (gameSizeX, gameSizeY, winCondition) => {
-  const userID = localStorage.getItem('userId')
+  const userID = localStorage.getItem('userId');
   const { addWinToDB } = useApplicationData();
 
   const game = {
@@ -25,8 +25,8 @@ export const Connect4 = (gameSizeX, gameSizeY, winCondition) => {
     // ends the game if checkWinner or IsDraw function returns true
     endIf: ({ G, ctx }) => {
       if (checkWinner(G.cells, gameSizeX, gameSizeY, winCondition)) {
-        if(ctx.currentPlayer === '0') {
-          addWinToDB(userID)
+        if (ctx.currentPlayer === '0') {
+          addWinToDB(userID);
         }
         return { winner: ctx.currentPlayer };
       }

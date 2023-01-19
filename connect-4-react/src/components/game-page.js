@@ -22,12 +22,12 @@ export default function GamePage(props) {
   // Win condition can't be more than the board width or height, minus one. so you cant have connect 9 on a 5x5 board
   if (winCondition > gameSizeX - 1 || winCondition > gameSizeY - 1) {
     if (gameSizeX === gameSizeY) {
-      winCondition = gameSizeX - 1
-      localStorage.setItem('winCondition', winCondition)
+      winCondition = gameSizeX - 1;
+      localStorage.setItem('winCondition', winCondition);
     }
     if (gameSizeX < gameSizeY) {
       winCondition = gameSizeX - 1;
-      localStorage.setItem('winCondition', winCondition)
+      localStorage.setItem('winCondition', winCondition);
     }
     if (gameSizeY < gameSizeX) {
       winCondition = gameSizeY - 1;

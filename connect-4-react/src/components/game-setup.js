@@ -79,7 +79,7 @@ export default function GameSetup(props) {
                             gameSizeY = 5;
                           }
                           if (gameSizeY > 12) {
-                            gameSizeY = 12
+                            gameSizeY = 12;
                           }
 
                           localStorage.setItem('gameSizeY', gameSizeY);
@@ -104,7 +104,7 @@ export default function GameSetup(props) {
                             winCondition = 4;
                           }
                           if (winCondition > 11) {
-                            winCondition = 11
+                            winCondition = 11;
                           }
 
                           localStorage.setItem('winCondition', winCondition);
