@@ -7,7 +7,7 @@ ConnectX is a local multiplayer game that allows users to play against each othe
 Sid
 1. Win game logic with custom user inputs, Draw game logic.
 2. ConnectX (x,y) custom size logic with user inputs.
-3. ConnectX logic construction and game page styling.
+3. ConnectX game logic and game page styling.
 4. Game setup page, conditional limitation logic for user inputs.
 5. PSQL database implementation.
 6. SQL Query helper functions.
